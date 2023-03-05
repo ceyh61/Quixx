@@ -13,12 +13,12 @@ public class GameDataBase {
 
     private static final String PLAYER_FOLDER = "src\\com\\databases\\players\\";
     private static final String DICE_FOLDER   = "src\\com\\databases\\dice\\";
-    private static final String PLAYER1_FILE = "src\\com\\databases\\players\\player1-";
-    private static final String PLAYER2_FILE = "src\\com\\databases\\players\\player2-";
-    private static final String PLAYER3_FILE = "src\\com\\databases\\players\\player3-";
-    private static final String PLAYER4_FILE = "src\\com\\databases\\players\\player4-";
-    private static final String PLAYER5_FILE = "src\\com\\databases\\players\\player5-";
-    private static final String DICE_FILE    = "src\\com\\databases\\dice\\diceHistory-";
+    private static final String PLAYER1_FILE = "src\\com\\databases\\players\\player01-";
+    private static final String PLAYER2_FILE = "src\\com\\databases\\players\\player02-";
+    private static final String PLAYER3_FILE = "src\\com\\databases\\players\\player03-";
+    private static final String PLAYER4_FILE = "src\\com\\databases\\players\\player04-";
+    private static final String PLAYER5_FILE = "src\\com\\databases\\players\\player05-";
+    private static final String DICE_FILE    = "src\\com\\databases\\dice\\diceRoll-";
     
     public GameDataBase() {
     }
@@ -89,11 +89,10 @@ public class GameDataBase {
     }
 
     // This method creates a CSV file with the given path for storing rolled dice data
-    // the file will have one line/Header (ID,Job,FirstName,LastName,Email,Password)
     private void createDiceFile(String diceFile) {
         String path = createPath_ForPlayerFile(diceFile);
-        //LogicAdministrator admin = new LogicAdministrator();
-        //admin.saveUserDBpath(path);
+        Connector cnn = new Connector();
+        cnn.savePlayerFilePath(path, diceFile);
         String inputDates = "The Following is the history of rolled dices in the game!";   
         File csvFile = new File(path);
         FileWriter fileWriter;

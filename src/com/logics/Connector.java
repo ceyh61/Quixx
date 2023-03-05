@@ -8,8 +8,8 @@ public class Connector {
     //------------------------------------------------------------
     //---Content:-------------------------------------------------
     //---1. Database methods -------------------------------------
-    //---2. Pathfinder methods -----------------------------------------
-    //---3. Room methods -----------------------------------------
+    //---2. Pathfinder methods -----------------------------------
+    //---3. Player input methods ---------------------------------
     //---4. Booking methods --------------------------------------
     //---5. User methods -----------------------------------
     //---6. Utility methods --------------------------------------
@@ -63,7 +63,26 @@ public class Connector {
     public String getPlayerFilePath(String fileName) {
         String answer = "";
         Pathfinder pf = new Pathfinder();
-        answer = pf.getLastFilePath_OfPlayer(fileName);
+        answer = pf.getLastSavedFilePath(fileName);
         return answer;
     }
+
+    //------------------------------------------------------------
+    //---3.---------------Player input methods--------------------
+    //------------------------------------------------------------
+
+    // This method checks if a player name is between 1-10 characters
+    public boolean nameLengthCheck(String playerName) {
+        NameValidation nv = new NameValidation();
+        boolean b = nv.isName_Length_Valid(playerName);
+        return b;
+    }
+
+    // This method checks if a players name contains only letter 
+    public boolean nameCharacterCheck(String playerName) {
+        NameValidation nv = new NameValidation();
+        boolean b = nv.isName_Character_Valid(playerName);
+        return b;
+    }
+
 }

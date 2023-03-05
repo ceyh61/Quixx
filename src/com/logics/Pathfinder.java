@@ -12,12 +12,12 @@ import java.time.LocalDateTime;
 public class Pathfinder {
     
     private static final String PATH_FOLDER        = "src\\com\\databases\\paths\\";
-    private static final String P1_PATH_STORAGE    = "src\\com\\databases\\paths\\player1-FilePaths-";
-    private static final String P2_PATH_STORAGE    = "src\\com\\databases\\paths\\player2-FilePaths-";
-    private static final String P3_PATH_STORAGE    = "src\\com\\databases\\paths\\player3-FilePaths-";
-    private static final String P4_PATH_STORAGE    = "src\\com\\databases\\paths\\player4-FilePaths-";
-    private static final String P5_PATH_STORAGE    = "src\\com\\databases\\paths\\player5-FilePaths-";
-    private static final String DICE_PATH_STORAGE  = "src\\com\\databases\\paths\\diceFilePaths-";
+    private static final String P1_PATH_STORAGE    = "src\\com\\databases\\paths\\player01-FilePaths-";
+    private static final String P2_PATH_STORAGE    = "src\\com\\databases\\paths\\player02-FilePaths-";
+    private static final String P3_PATH_STORAGE    = "src\\com\\databases\\paths\\player03-FilePaths-";
+    private static final String P4_PATH_STORAGE    = "src\\com\\databases\\paths\\player04-FilePaths-";
+    private static final String P5_PATH_STORAGE    = "src\\com\\databases\\paths\\player05-FilePaths-";
+    private static final String DICE_PATH_STORAGE  = "src\\com\\databases\\paths\\diceRoll-FilePaths-";
 
 
     protected Pathfinder() {
@@ -61,8 +61,7 @@ public class Pathfinder {
     // the file will have one line/Header (ID,Job,FirstName,LastName,Email,Password)
     private void createDicePathFile(String dicePathStorage) {
         String path = createPath_ForPathStorageFiles(dicePathStorage);
-        //LogicAdministrator admin = new LogicAdministrator();
-        //admin.saveUserDBpath(path);
+
         String inputDates = "The Following is the history of rolled dices in the game!";   
         File csvFile = new File(path);
         FileWriter fileWriter;
@@ -126,13 +125,13 @@ public class Pathfinder {
     // This file (PathUser) stores the paths of new USER_DATA file  
     public static String getPath_PlayerPathFile(String fileName) {
         String answer = "";
-        String lastEightLetters = fileName.substring(fileName.length()-8);
+        String searchName = fileName.substring(fileName.length()-9);
         String str1 = "";
         File file = new File(PATH_FOLDER);
         String[] fileList = file.list();
             for (int i = 0; i < fileList.length; i++) {
                 str1 = ""+fileList[i];
-                if (str1.contains(lastEightLetters)) {
+                if (str1.contains(searchName)) {
                     answer = PATH_FOLDER+fileList[i];
                 }
             }
@@ -152,7 +151,7 @@ public class Pathfinder {
 
     // This method returns the last line from the (player Path) file
     // the last line is the path of player file, where all player scores/points are stored
-    protected String getLastFilePath_OfPlayer(String fileName) {
+    protected String getLastSavedFilePath(String fileName) {
         String answer = "";
             try {
                 BufferedReader bReader = new BufferedReader(new FileReader(getPath_PlayerPathFile(fileName)));
