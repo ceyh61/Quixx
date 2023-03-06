@@ -47,15 +47,30 @@ public class ActivePlayer extends JFrame implements ActionListener {
         this.addWindowListener(new WindowAdapter(){
 
             public void windowOpened(WindowEvent e){
+                boolean redRow = new Connector().isRedRowComplete();
+                boolean greenRow = new Connector().isYellowRowComplete();
+                boolean yellowRow = new Connector().isGreenRowComplete();
+                boolean blueRow = new Connector().isBlueRowComplete();
 
                 cNumber_Tf.setEnabled(false);
                 cNumber_Lb.setEnabled(false);
-                /*
-                if (checkIfGameEnds()){
-                    new Scoreboard();
-                    dispose();
+
+                if (redRow){
+                    wRed_Rbt.setEnabled(false);
+                    cRed_Rbt.setEnabled(false);
                 }
-                */
+                if (yellowRow){
+                    wYellow_Rbt.setEnabled(false);
+                    cYellow_Rbt.setEnabled(false);
+                }
+                if (greenRow){
+                    wGreen_Rbt.setEnabled(false);
+                    cGreen_Rbt.setEnabled(false);
+                }
+                if (blueRow){
+                    wBlue_Rbt.setEnabled(false);
+                    cBlue_Rbt.setEnabled(false);
+                }
             }
         });
 

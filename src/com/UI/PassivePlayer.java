@@ -12,10 +12,8 @@ public class PassivePlayer extends JFrame implements ActionListener {
     private JLabel gDice_Lb;
     private JLabel bDice_Lb;
     private JLabel wCross_Lb;
-    private JLabel cCross_Lb;
     private JLabel wNumber_Lb;
     private JLabel wSumNumber_Lb;
-    private JLabel cNumber_Lb;
     private JLabel penalty_Lb;
     private JRadioButton wNothing_Rbt;
     private JRadioButton wRed_Rbt;
@@ -37,6 +35,29 @@ public class PassivePlayer extends JFrame implements ActionListener {
         c = getContentPane();
         c.setLayout(null);
         c.setBackground(Color.lightGray);
+
+        this.addWindowListener(new WindowAdapter(){
+
+            public void windowOpened(WindowEvent e){
+                boolean redRow = new Connector().isRedRowComplete();
+                boolean greenRow = new Connector().isYellowRowComplete();
+                boolean yellowRow = new Connector().isGreenRowComplete();
+                boolean blueRow = new Connector().isBlueRowComplete();
+
+                if (redRow){
+                    wRed_Rbt.setEnabled(false);
+                }
+                if (yellowRow){
+                    wYellow_Rbt.setEnabled(false);
+                }
+                if (greenRow){
+                    wGreen_Rbt.setEnabled(false);
+                }
+                if (blueRow){
+                    wBlue_Rbt.setEnabled(false);
+                }
+            }
+        });
 
         // create the player name label
         pName_Lb = new JLabel("Player Name");
