@@ -14,7 +14,7 @@ public class GameLogic {
     public ArrayList<Integer> rollDice(int NUMBER_DICES){
         ArrayList<Integer> diceResults = new ArrayList<Integer>();
 
-        for(int i=0;i<6;i++){
+        for(int i=0;i<NUMBER_DICES;i++){
             diceResults.add(getRandomNumberBetweenOneAndSix());
         }
         return diceResults;
