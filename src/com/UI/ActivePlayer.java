@@ -50,6 +50,12 @@ public class ActivePlayer extends JFrame implements ActionListener {
 
                 cNumber_Tf.setEnabled(false);
                 cNumber_Lb.setEnabled(false);
+                /*
+                if (checkIfGameEnds()){
+                    new Scoreboard();
+                    dispose();
+                }
+                */
             }
         });
 
