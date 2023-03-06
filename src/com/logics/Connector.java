@@ -84,5 +84,22 @@ public class Connector {
         boolean b = nv.isName_Character_Valid(playerName);
         return b;
     }
+   
+    //------------------------------------------------------------
+    //---4.---------------Calculation methods--------------------
+    //------------------------------------------------------------
+    
+    // This method checks if the game should end
+    public boolean checkIfGameEnds(){
+        boolean check = false;
+
+        if(checkIfAnyPlayerHasFourPenalties()){
+            check = true;
+        } else if (checkIfTwoRowsAreDisabled()) {
+            check = true;
+        }
+
+        return check;
+    }
 
 }
