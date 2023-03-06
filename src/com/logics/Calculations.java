@@ -187,4 +187,15 @@ public class Calculations {
 
         return playersPoints;
     }
+    protected boolean checkIfAnyPlayerHasFourPenalties(){
+        boolean check = false;
+
+
+        return check;
+    }
+    protected boolean checkIfTwoRowsAreDisabled(){
+        boolean check = false;
+
+        return check;
+    }
 }
