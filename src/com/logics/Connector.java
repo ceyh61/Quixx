@@ -2,7 +2,16 @@ package com.logics;
 
 public class Connector {
     
+    public boolean redRowComplete;
+    public boolean yellowRowComplete;
+    public boolean greenRowComplete;
+    public boolean blueRowComplete;
+    
     public Connector() {
+        redRowComplete = true;
+        yellowRowComplete = false;
+        greenRowComplete = false;
+        blueRowComplete = true;
     }
 
     //------------------------------------------------------------
@@ -92,14 +101,33 @@ public class Connector {
     // This method checks if the game should end
     public boolean checkIfGameEnds(){
         boolean check = false;
+        Calculations calculation = new Calculations();
 
-        if(checkIfAnyPlayerHasFourPenalties()){
+        if(calculation.checkIfAnyPlayerHasFourPenalties()){
             check = true;
-        } else if (checkIfTwoRowsAreDisabled()) {
+        } else if (calculation.checkIfTwoRowsAreDisabled()){
             check = true;
         }
 
         return check;
     }
+    //------------------------------------------------------------
+    //---5.---------------GameLogic methods--------------------
+    //------------------------------------------------------------
 
+    public boolean isRedRowComplete() {
+        return redRowComplete;
+    }
+
+    public boolean isYellowRowComplete() {
+        return yellowRowComplete;
+    }
+
+    public boolean isGreenRowComplete() {
+        return greenRowComplete;
+    }
+
+    public boolean isBlueRowComplete() {
+        return blueRowComplete;
+    }
 }
