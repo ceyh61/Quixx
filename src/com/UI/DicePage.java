@@ -5,6 +5,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
+import com.logics.Connector;
+
 public class DicePage extends JFrame implements ActionListener{
 
     private Container c;
@@ -162,6 +164,8 @@ public class DicePage extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == roll_Bt) {
+            Connector cnn = new Connector();
+            cnn.getDiceRollingResult();
         } 
 
         else if(e.getSource() == exit_Bt){

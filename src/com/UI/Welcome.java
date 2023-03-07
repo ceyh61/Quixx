@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import com.logics.Connector;
+
 public class Welcome extends JFrame implements ActionListener{
 
     private Container c;
@@ -102,20 +104,26 @@ public class Welcome extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == continue_Bt) {
-            if (p2_RBt.isSelected()) {
-
+            if (p2_RBt.isSelected() || p3_RBt.isSelected() || p4_RBt.isSelected() || p5_RBt.isSelected()) {
+                Connector cnn = new Connector();
+                if (p2_RBt.isSelected()) {
+                    cnn.createPlayerFiles(2);
+                }
+                if (p3_RBt.isSelected()) {
+                    cnn.createPlayerFiles(3);
+                }
+                if (p4_RBt.isSelected()) {
+    
+                }
+                if (p5_RBt.isSelected()) {
+    
+                }
+                new AddPlayer();
+                dispose();
             }
-            if (p3_RBt.isSelected()) {
-
+            else {
+                JOptionPane.showMessageDialog(null, "Please choose the number of Players.");    
             }
-            if (p4_RBt.isSelected()) {
-
-            }
-            if (p5_RBt.isSelected()) {
-
-            }
-            new AddPlayer();
-            dispose();
         } 
 
         else if(e.getSource() == exit_Bt){

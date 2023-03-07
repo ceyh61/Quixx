@@ -1,5 +1,7 @@
 package com.logics;
 
+import java.util.ArrayList;
+
 public class Connector {
     
     public Connector() {
@@ -26,6 +28,12 @@ public class Connector {
         gDB.createPlayerFiles(numberOfPlayers);
     }
 
+    // This method gets the name of players and creates an empty CSV file
+    public void createOnePlayerFiles(String playerName) {
+        GameDataBase gDB = new GameDataBase();
+        gDB.createOneEmptyFile(playerName);;
+    }
+
     // This method deletes all the files in the players folder
     public void deletePlayerFiles() {
         GameDataBase gDB = new GameDataBase();
@@ -36,6 +44,12 @@ public class Connector {
     public void deleteDiceFiles() {
         GameDataBase gDB = new GameDataBase();
         gDB.deleteDiceHistoryFiles();
+    }
+
+    // This method gets a path and deletes the given file 
+    public void deleteOneFile(String deletePath) {
+        GameDataBase gDB = new GameDataBase();
+        gDB.deleteOnePlayerFile(deletePath);
     }
 
     //------------------------------------------------------------
@@ -60,7 +74,7 @@ public class Connector {
         pf.addNewPlayerFilePath(newPlayerPath, fileName);
     }
 
-    public String getPlayerFilePath(String fileName) {
+    public String getLastFilePath(String fileName) {
         String answer = "";
         Pathfinder pf = new Pathfinder();
         answer = pf.getLastSavedFilePath(fileName);
@@ -70,7 +84,7 @@ public class Connector {
     //------------------------------------------------------------
     //---3.---------------Player input methods--------------------
     //------------------------------------------------------------
-
+/* 
     // This method checks if a player name is between 1-10 characters
     public boolean nameLengthCheck(String playerName) {
         NameValidation nv = new NameValidation();
@@ -84,5 +98,68 @@ public class Connector {
         boolean b = nv.isName_Character_Valid(playerName);
         return b;
     }
+*/
+    // This method checks if a player name is between 1-10 characters
+    // and checks if a players name contains only letter 
+    public String validateName(String fileName) {
+        String answer = "";
+        Pathfinder pf = new Pathfinder();
+        answer = pf.getLastSavedFilePath(fileName);
+        return answer;
+    }
 
+    //------------------------------------------------------------
+    //---4.---------------Dice Read/Write methods-----------------
+    //------------------------------------------------------------
+
+    public String getLastDiceData() {
+        String answer = "";
+        DiceDataRW dd = new DiceDataRW();
+        answer = dd.readDiceFile();
+        return answer;
+    }
+
+    public void saveDiceData(String newDiceData) {
+        DiceDataRW dd = new DiceDataRW();
+        dd.writeToDiceFile(newDiceData);
+    }
+
+    //------------------------------------------------------------
+    //---5.---------------Dice Rolling methods--------------------
+    //------------------------------------------------------------
+
+    public String getDiceRollingResult() {
+        String answer = "";
+        DiceRolls dr = new DiceRolls();
+        answer = dr.rollTheDices();
+        return answer;
+    }
+
+    //------------------------------------------------------------
+    //---6.------------Player Data Read/Write methods-------------
+    //------------------------------------------------------------
+
+    // This method gets the (file name, color type and chosen number)
+    // returns the number as a String
+    public String get_A_Number(String fileName, String color, String number) {
+        String answer = "";
+        PlayerDataRW pd = new PlayerDataRW();
+        answer = pd.readOnlyOneNumber(fileName, color, number);
+        return answer;
+    }
+
+    // This method gets the file name and color and returns all numbers of that color
+    public ArrayList<String> get_A_Line(String fileName, String color) {
+        ArrayList<String> answer = new ArrayList<>();
+        PlayerDataRW pd = new PlayerDataRW();
+        answer = pd.readOnlyOneLine(fileName, color);
+        return answer;
+    }
+
+    public boolean isNumberCrossed(String fileName, String color, String number) {
+        boolean b = false;
+        PlayerDataRW pd = new PlayerDataRW();
+        b = pd.checkIfNumberIsCrossed(fileName, color, number);
+        return b;
+    }
 }

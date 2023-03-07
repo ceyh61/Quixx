@@ -1,6 +1,7 @@
 package com.main;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import com.UI.*;
 import com.logics.*;
@@ -13,6 +14,7 @@ public class Start {
     private static final String PLAYER3_FILE = "src\\com\\databases\\players\\player03-";
     private static final String PLAYER4_FILE = "src\\com\\databases\\players\\player04-";
     private static final String PLAYER5_FILE = "src\\com\\databases\\players\\player05-";
+    private static final String DICE_FILE    = "src\\com\\databases\\dice\\diceRoll-";
     
     public static void toWelcomePage (){
         new Welcome();
@@ -21,6 +23,11 @@ public class Start {
     public static void testCreatePlayerFiles (){
         Connector cnn = new Connector();
         cnn.createPlayerFiles(5);
+    }
+
+    public static void testCreateOnePlayerFiles (String playerName){
+        Connector cnn = new Connector();
+        cnn.createOnePlayerFiles(playerName);;
     }
 
     public static void testDeletePlayerFiles (){
@@ -66,10 +73,10 @@ public class Start {
         String answer = "";
         String st = fileName;
         Connector cnn = new Connector();
-        answer = cnn.getPlayerFilePath(st);
+        answer = cnn.getLastFilePath(st);
         return answer;
     }
-
+/* 
     public static boolean testNameValidation (String playerName){
         boolean answer = false;
         Connector cnn = new Connector();
@@ -83,9 +90,77 @@ public class Start {
         answer = cnn.nameLengthCheck(playerName);
         return answer;
     }
+*/
+    public static String testgetDiceData (){
+        String answer = "";
+        Connector cnn = new Connector();
+        answer = cnn.getLastDiceData();
+        return answer;
+    }
+
+    public static String testing1 (){
+        String answer = "";
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("apple");
+        list.add("banana");
+        list.add("cherry");
+        list.add("melon");
+        answer = ""+list;
+        return answer;
+    }
+    public static String testing2 (){
+        String answer = "";
+        Connector cnn = new Connector();
+        answer = cnn.getLastDiceData();
+        return answer;
+    }
+
+    public static void testSaveDice(String diceData) {
+        Connector cnn = new Connector();
+        cnn.saveDiceData(diceData);
+    }
+
+    public static String testRollingDice(){
+        String answer = "";
+        Connector cnn = new Connector();
+        answer = cnn.getDiceRollingResult();
+        return answer;
+    }
+
+    
+    public static String testReadPlayerData(String fileName){
+        String answer = "";
+        PlayerDataRW pd = new PlayerDataRW();
+        answer = pd.getPlayerBoardData(fileName);
+        return answer;
+    }
+    
+
+    public static String testGetOneNumber(String fileName, String color, String number){
+        String answer = "";
+        Connector cnn = new Connector();
+        answer = cnn.get_A_Number(fileName, color, number);
+        return answer;
+    }
+
+    public static ArrayList<String> testGetOneLine(String fileName, String color) {
+        ArrayList<String> answer = new ArrayList<>();
+        Connector cnn = new Connector();
+        answer = cnn.get_A_Line(fileName, color) ;
+        return answer;
+    }
+
+    public static boolean testIsNumCrossed(String fileName, String color, String number){
+        boolean answer = false;
+        Connector cnn = new Connector();
+        answer = cnn.isNumberCrossed(fileName, color, number);
+        return answer;
+    }
 
     public static void main(String[] args) throws Exception{
         //toWelcomePage();
+        //System.out.println(testing1());
+        //System.out.println(testing2());
         //testCreatePlayerFiles();
         //testDeletePlayerFiles();
         //testCreatePathFiles();
@@ -97,9 +172,17 @@ public class Start {
         //System.out.println(testgetLastPath(PLAYER2_FILE));
         //System.out.println(testgetLastPath(PLAYER3_FILE));
         //System.out.println(testgetLastPath(PLAYER4_FILE));
-        //System.out.println(testgetLastPath(PLAYER5_FILE));
-        System.out.println(testNameValidation("PLAYERFILE"));
-        System.out.println(testNameLength("PLAYERFILE"));
+        //System.out.println(testgetLastPath(DICE_FILE));
+        //System.out.println(testNameValidation("PLAYERFILE"));
+        //System.out.println(testNameLength("PLAYERFILE"));
+        //System.out.println(testgetDiceData());
+        //testSaveDice("1,1,1,1,1,1");
+        //System.out.println(testRollingDice());
+        System.out.println(testReadPlayerData("p1"));
+        //System.out.println(testGetOneNumber("p1", "red", "2"));
+        //System.out.println(testGetOneLine("p1", "blu"));
+        //System.out.println(testIsNumCrossed("p1", "red", "5"));
+        //testCreateOnePlayerFiles("p2");
     }
 
 }

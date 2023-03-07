@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import com.logics.Connector;
+
 public class AddPlayer extends JFrame implements ActionListener{
 
     private Container c;
@@ -141,6 +143,18 @@ public class AddPlayer extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == continue_Bt) {
+
+            Connector cnn = new Connector();
+            String msg = "";
+
+            String p1_Name = p1_Tf.getText();
+            String p2_Name = p2_Tf.getText();
+            String p3_Name = p3_Tf.getText();
+            String p4_Name = p4_Tf.getText();
+            String p5_Name = p5_Tf.getText();
+
+            //msg = cnn.validateName(p1_Name);
+
             new DicePage();
             dispose();
         } 
