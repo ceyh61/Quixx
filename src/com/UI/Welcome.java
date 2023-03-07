@@ -113,10 +113,10 @@ public class Welcome extends JFrame implements ActionListener{
                     cnn.createPlayerFiles(3);
                 }
                 if (p4_RBt.isSelected()) {
-    
+                    cnn.createPlayerFiles(4);
                 }
                 if (p5_RBt.isSelected()) {
-    
+                    cnn.createPlayerFiles(5);
                 }
                 new AddPlayer();
                 dispose();

@@ -1,3 +1,5 @@
+package com.logics;
+
 import java.util.ArrayList;
 
 public class GameLogic {
