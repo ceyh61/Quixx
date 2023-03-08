@@ -153,10 +153,14 @@ public class AddPlayer extends JFrame implements ActionListener{
             String p4_Name = p4_Tf.getText();
             String p5_Name = p5_Tf.getText();
 
-            //msg = cnn.validateName(p1_Name);
+            msg = cnn.validateName(p1_Name);
 
-            new DicePage();
-            dispose();
+            if (!msg.isEmpty()) {
+                JOptionPane.showMessageDialog(null, ""+msg);
+            } else {
+                new DicePage();
+                dispose();
+            }
         } 
 
         else if(e.getSource() == exit_Bt){
