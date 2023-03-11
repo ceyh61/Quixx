@@ -219,6 +219,23 @@ public class Start {
         //int x = c.calculateAllPointsOfPlayer("p1");
         //System.out.println(x);
         //System.out.println(c.checkIfTwoRowsAreDisabled(5));
+
+        /*GameProcess x = new GameProcess(4);
+        System.out.println("Aktiv: " + x.getActivePlayer());
+        ArrayList<String> passive = x.getPassivePlayer();
+        for (String pl: passive) {
+            System.out.println(pl);
+        }
+
+        x.nextRound();
+        System.out.println("Aktiv: " + x.getActivePlayer());
+        passive = x.getPassivePlayer();
+
+        ArrayList<String> pllist = x.getPlayerlist();
+        for (String pl: passive) {
+            System.out.println("list: " + pl);
+        }*/
+
     }
 
 }
