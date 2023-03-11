@@ -198,7 +198,7 @@ public class Start {
         //System.out.println(testIsNumCrossed("p1", "red", "5"));
         //testCreateOnePlayerFiles("p2");
         //System.out.println(testGetACrossedLine("p1", "red", "10"));
-        System.out.println(testCrossANumber("p1", "red", "10"));
+        System.out.println(testCrossANumber("p1", "blu", "10"));
     }
 
 }

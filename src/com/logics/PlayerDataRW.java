@@ -91,13 +91,19 @@ public class PlayerDataRW {
     }
 
     // This method saves the booking data into (BookingData) CSV file
-    private void writeToPlayerFile(String playerName, String newLine) {
+    private void writeToPlayerFile(String playerName, String newLine, Boolean nextLine) {
         String s = getPlayerFileIndex(playerName);
         Connector cnn = new Connector();
         String path = cnn.getLastFilePath(s);
         try {
             BufferedWriter bWriter = new BufferedWriter(new FileWriter(path, true));
-            bWriter.write("\n"+newLine);
+            // if the given line if the first line the it does not need to add "\n" (creating to next line)
+            if (nextLine) {
+                bWriter.write(""+newLine);
+            } else if (!nextLine){
+                bWriter.write("\n"+newLine);
+            }
+            // closes the buffered writer class
             bWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -243,10 +249,14 @@ public class PlayerDataRW {
         return answer;
     }
 
+    // method gets: file/player name, color and number
+    // then gets the line, which contains the number to be crossed as an Arraylist
+    // raplaces the number with "X" sign and returns the line as a normal String
     public String createALineWithCrossedNumber(String fileName, String color, String number) {
         String answer = "";
         int i = getNumberIndex(color, number);
         ArrayList <String> aL = new ArrayList<>();
+        // gets the specified line from the player file
         aL = readOnlyOneLine(fileName, color);
         aL.set(i, CROSSED_SYMBOL);
         String a = ""+aL;
@@ -257,44 +267,67 @@ public class PlayerDataRW {
         return answer;
 
     }
+
+    // method gets the (file name/player name, color and the number to be crossed)
+    // first checks if the number is already crossed or not.
+    // is not then creates a new line with the chosen number crossed.
+    // then it saves the new changes to the file.  
     protected String crossANumberInBoard(String fileName, String color, String number) {
         String answer = "";
         boolean b = checkIfNumberIsCrossed(fileName, color, number);
         String newLine = createALineWithCrossedNumber(fileName, color, number);
-        answer = newLine;
+        // false means the number is not crossed yet.
         if (b == false) {
-            
-            saveChangesIntoPlayerFile(fileName, color, number, newLine);
+            answer = saveChangesIntoPlayerFile(fileName, color, number, newLine);
         } else {
             answer = "Number is already Crossed!";
         }
         return answer;
     }
 
+    // method gets : file/player name, color, number and the new line with the crossed number
+    // reads and copies the old file into the new file but replaces the line with the newly crossed number
     private String saveChangesIntoPlayerFile(String fileName, String color, String number, String newLine) {
         String answer = "";
         int c = getColorIndex(color);
         String s = getPlayerFileIndex(fileName);
         Connector cnn = new Connector();
+
+        // gets the path of the current file
         String currentPath = cnn.getLastFilePath(s);
+        // creates a new empty file for the player and saves the path to its corresponding path saver file
         cnn.createOnePlayerFiles(s);
 
         try {
             BufferedReader file_out = new BufferedReader(new FileReader(currentPath));
             String csvLine = "";
             int count = -1;
+
             while ( (csvLine = file_out.readLine()) != null ) {
                 count++;
+                if (count == 0) {
+                    if (count == c) {
+                        // writes the new line instead of the old one
+                        writeToPlayerFile(fileName, newLine, true);
+                        csvLine = "";
+                        newLine = "";
+                    }
+                    else if (count != c){
+                        // writes back the old lines into the file
+                        writeToPlayerFile(fileName, csvLine, true);
+                        csvLine = "";
+                    }
+                }
                 // checks for the color/line that is needed to be rewritten
-                if (count == c) {
+                else if (count == c) {
                     // writes the new line instead of the old one
-                    writeToPlayerFile(fileName, newLine);
+                    writeToPlayerFile(fileName, newLine, false);
                     csvLine = "";
                     newLine = "";
                 }
                 else if (count != c){
                     // writes back the old lines into the file
-                    writeToPlayerFile(fileName, csvLine);
+                    writeToPlayerFile(fileName, csvLine, false);
                     csvLine = "";
                 }
             }
@@ -302,6 +335,8 @@ public class PlayerDataRW {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // deletes the old file after the copy of the data is finished
         cnn.deleteOneFile(currentPath);
         answer = "Number "+number+" is Crossed!";
         return answer;
