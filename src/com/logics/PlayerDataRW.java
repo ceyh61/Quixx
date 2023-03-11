@@ -91,7 +91,7 @@ public class PlayerDataRW {
     }
 
     // This method saves the booking data into (BookingData) CSV file
-    private void writeToPlayerFile(String newLine, String playerName) {
+    private void writeToPlayerFile(String playerName, String newLine) {
         String s = getPlayerFileIndex(playerName);
         Connector cnn = new Connector();
         String path = cnn.getLastFilePath(s);
@@ -255,15 +255,17 @@ public class PlayerDataRW {
         String answer = "";
         boolean b = checkIfNumberIsCrossed(fileName, color, number);
         if (b == false) {
-            saveChangesIntoPlayerFile(fileName, number);
+            String newLine = createALineWithCrossedNumber(fileName, color, number);
+            answer = saveChangesIntoPlayerFile(fileName, color, number, newLine);
         } else {
             answer = "Number is already Crossed!";
         }
         return answer;
     }
 
-    private String saveChangesIntoPlayerFile(String fileName, String number) {
+    private String saveChangesIntoPlayerFile(String fileName, String color, String number, String newLine) {
         String answer = "";
+        int c = getColorIndex(color);
         String s = getPlayerFileIndex(fileName);
         Connector cnn = new Connector();
         String currentPath = cnn.getLastFilePath(s);
@@ -272,18 +274,16 @@ public class PlayerDataRW {
         try {
             BufferedReader file_out = new BufferedReader(new FileReader(currentPath));
             String csvLine = "";
+            int count = 0;
             while ( (csvLine = file_out.readLine()) != null ) {
-                String[] dataLine = csvLine.split(COMMA_DELIMITER);
-                // ignores the first line (column headers) and the line with the given room number
-                if (!dataLine[0].equals("RoomNo")) {
-                    if (!dataLine[0].equals(roomNo)) {
-                        String newLine = csvLine;
-                        writeToPlayerFile(csvLine, fileName);
-                    }
-                    else if (dataLine[0].equals(roomNo)) {
-                        String newLine = "";
-                        writeToPlayerFile(csvLine, fileName);
-                    }
+                count++;
+                // checks for the color/line that is needed to be rewritten
+                if (count == c) {
+                    // writes the new line instead of the old one
+                    writeToPlayerFile(fileName, newLine);
+                }else{
+                    // writes back the old lines into the file
+                    writeToPlayerFile(fileName, csvLine);
                 }
             }
             file_out.close();

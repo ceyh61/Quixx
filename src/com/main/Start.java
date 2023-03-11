@@ -156,14 +156,14 @@ public class Start {
         answer = cnn.isNumberCrossed(fileName, color, number);
         return answer;
     }
-
+/* 
     public static String testGetACrossedLine(String fileName, String color, String number){
         String answer = "";
         PlayerDataRW pd = new PlayerDataRW();
         answer = pd.createALineWithCrossedNumber(fileName, color, number);
         return answer;
     }
-
+*/
 
     public static void main(String[] args) throws Exception{
         //toWelcomePage();
