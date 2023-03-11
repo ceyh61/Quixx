@@ -171,6 +171,20 @@ public class Start {
         return answer;
     }
 
+    public static ArrayList<String> testNumberOfPenalties(String fileName){
+        ArrayList<String> answer = new ArrayList<>();
+        PlayerDataRW pd = new PlayerDataRW();
+        answer = pd.checkThePenalties(fileName);
+        return answer;
+    }
+
+    public static int testGetPenaltyNumber(String fileName){
+        int answer = 0;
+        Connector cnn = new Connector();
+        answer = cnn.getPenaltyNumbers(fileName);
+        return answer;
+    }
+
     public static void main(String[] args) throws Exception{
         //toWelcomePage();
         //System.out.println(testing1());
@@ -199,6 +213,8 @@ public class Start {
         //testCreateOnePlayerFiles("p2");
         //System.out.println(testGetACrossedLine("p1", "red", "10"));
         //System.out.println(testCrossANumber("p1", "blu", "10"));
+        //System.out.println(testNumberOfPenalties("p1"));
+        System.out.println(testGetPenaltyNumber("p1"));
     }
 
 }

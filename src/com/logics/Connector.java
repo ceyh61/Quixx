@@ -171,9 +171,23 @@ public class Connector {
         return answer;
     }
 
+    public ArrayList<String> getPenaltyArray(String fileName) {
+        ArrayList<String> answer = new ArrayList<>();
+        PlayerDataRW pd = new PlayerDataRW();
+        answer = pd.checkThePenalties(fileName);
+        return answer;
+    }
+
     //------------------------------------------------------------
     //---7.------------Calculations methods-----------------------
     //------------------------------------------------------------
+
+    public int getPenaltyNumbers(String fileName) {
+        int answer = 0;
+        Calculations cal = new Calculations();
+        answer = cal.calculatePenaltiesPoints(fileName);
+        return answer;
+    }
 
     public boolean isRedRowComplete() {
         boolean b = false;

@@ -357,6 +357,19 @@ public class PlayerDataRW {
         return b;
     }
 
+    public ArrayList <String> checkThePenalties(String fileName) {
+        ArrayList<String> answer = new ArrayList<>();
+        String path = getPlayerFileIndex(fileName);
+        readPlayersFile(path);
+        
+        answer.add(playerBoardList.get(0).get(RED_PENALTY_INDEX));
+        answer.add(playerBoardList.get(1).get(YEL_PENALTY_INDEX));
+        answer.add(playerBoardList.get(2).get(GRE_PENALTY_INDEX));
+        answer.add(playerBoardList.get(3).get(BLU_PENALTY_INDEX));
+        
+        return answer;
+    }
+
     // method returns the Path of a given player
     private String getPlayerFileIndex(String fileName) {
         String answer = "";

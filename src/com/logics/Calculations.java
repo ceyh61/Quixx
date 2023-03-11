@@ -91,25 +91,21 @@ public class Calculations {
         return points;
     }
 
-
-    protected int calculatePenaltiesPoints(ArrayList<String> redRow,ArrayList<String> yellowRow,ArrayList<String> greenRow,ArrayList<String> blueRow){
+    // method gets the file/player name and calls for the penalty list from the Connector class
+    // it calculates the penalties and returns it as an integer
+    protected int calculatePenaltiesPoints(String fileName){
         int points = 0;
-
-        if(redRow.get(12) == "P"){
-            points -=5;
+        ArrayList <String> penaltyList = new ArrayList<>();
+        Connector cnn = new Connector();
+        penaltyList = cnn.getPenaltyArray(fileName);
+        for (int i = 0; i < penaltyList.size(); i++) {
+            if(penaltyList.get(i).equalsIgnoreCase("Y")) {
+                points++;
+            }
         }
-        if(yellowRow.get(12) == "P"){
-            points -=5;
-        }
-        if(greenRow.get(12) == "P"){
-            points -=5;
-        }
-        if(blueRow.get(12) == "P"){
-            points -=5;
-        }
-
         return points;
     }
+
     protected int calculateAllPointsOfPlayer(ArrayList<String> redRow,ArrayList<String> yellowRow,ArrayList<String> greenRow,ArrayList<String> blueRow){
         int redPoints = calculateRedPoints(redRow);
         int yellowPoints = calculateYellowPoints(yellowRow);
