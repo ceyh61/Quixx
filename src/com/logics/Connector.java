@@ -70,11 +70,13 @@ public class Connector {
         pf.deleteAllPathStorageFiles();
     }
 
+    // This method saves the path of newly generated player file to the specific (player-FilePath) file
     public void savePlayerFilePath(String newPlayerPath, String fileName) {
         Pathfinder pf = new Pathfinder();
         pf.addNewPlayerFilePath(newPlayerPath, fileName);
     }
 
+    // This method searches for the last saved path of a specific player file and returns it as a String
     public String getLastFilePath(String fileName) {
         String answer = "";
         Pathfinder pf = new Pathfinder();
@@ -113,6 +115,7 @@ public class Connector {
     //---4.---------------Dice Read/Write methods-----------------
     //------------------------------------------------------------
 
+    // This method reads the last line from the diceRoll file and returns it as a String
     public String getLastDiceData() {
         String answer = "";
         DiceDataRW dd = new DiceDataRW();
@@ -120,6 +123,7 @@ public class Connector {
         return answer;
     }
 
+    // This method gets the six generated random numbers and saves it into the diceRoll CSV file
     public void saveDiceData(String newDiceData) {
         DiceDataRW dd = new DiceDataRW();
         dd.writeToDiceFile(newDiceData);
@@ -129,6 +133,7 @@ public class Connector {
     //---5.---------------Dice Rolling methods--------------------
     //------------------------------------------------------------
 
+    // This method returns a String of Six ramdom numbers between 1 to 6.
     public String getDiceRollingResult() {
         String answer = "";
         DiceRolls dr = new DiceRolls();
@@ -157,6 +162,7 @@ public class Connector {
         return answer;
     }
 
+    // This method checks if the given number is already crossed or not
     public boolean isNumberCrossed(String fileName, String color, String number) {
         boolean b = false;
         PlayerDataRW pd = new PlayerDataRW();
@@ -164,6 +170,7 @@ public class Connector {
         return b;
     }
 
+    // This method gets the player name, color and the chosen number and crosses it in the file
     public String crossANumber(String fileName, String color, String number) {
         String answer = "";
         PlayerDataRW pd = new PlayerDataRW();
@@ -171,6 +178,8 @@ public class Connector {
         return answer;
     }
 
+    // This method gives an ArrayList of last elements of each row from player file
+    // these elements are used to calculate the number of penalties
     public ArrayList<String> getPenaltyArray(String fileName) {
         ArrayList<String> answer = new ArrayList<>();
         PlayerDataRW pd = new PlayerDataRW();
@@ -182,6 +191,7 @@ public class Connector {
     //---7.------------Calculations methods-----------------------
     //------------------------------------------------------------
 
+    // This method calculates the number of penalties for the given player/file name
     public int getPenaltyNumbers(String fileName) {
         int answer = 0;
         Calculations cal = new Calculations();
