@@ -1,9 +1,12 @@
 package com.logics;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Calculations {
 
+    private static final String[] POINTS_ARRAY = {"0", "1", "3", "6", "10", "15", "21", "28", "36", "45", "55", "66", "78"};
+    
     public Calculations(){
 
     }
@@ -12,154 +15,82 @@ public class Calculations {
         int points = 0;
         int countCross = 0;
 
-        for(int i=0 ; i<redRow.size() ; i++){
+        ArrayList <String> pointList = new ArrayList<>();
+        // adding all the point from a normal Array to an ArrayList for simple calculations
+        pointList.addAll(Arrays.asList(POINTS_ARRAY));
+
+        // counts the number of the crossed numbers 
+        for(int i = 0 ; i < redRow.size() ; i++){
             if (redRow.get(i).contains("X")){
                 countCross++;
             }
         }
-
-        if(countCross == 1){
-            points = 1;
-        } else if (countCross == 2) {
-            points = 3;
-        } else if (countCross == 3) {
-            points = 6;
-        } else if (countCross == 4) {
-            points = 10;
-        } else if (countCross == 5) {
-            points = 15;
-        } else if (countCross == 6) {
-            points = 21;
-        } else if (countCross == 7) {
-            points = 28;
-        } else if (countCross == 8) {
-            points = 36;
-        } else if (countCross == 9) {
-            points = 45;
-        } else if (countCross == 10) {
-            points = 55;
-        } else if (countCross == 11) {
-            points = 66;
-        } else if (countCross == 12) {
-            points = 78;
-        }
+        // finds the corresponding point from the list and returns it. 
+        points = Integer.parseInt(pointList.get(countCross));
 
         return points;
     }
+
     protected int calculateYellowPoints(ArrayList<String> yellowRow){
         int points = 0;
         int countCross = 0;
 
-        for(int i=0 ; i<yellowRow.size() ; i++){
+        ArrayList <String> pointList = new ArrayList<>();
+        // adding all the point from a normal Array to an ArrayList for simple calculations
+        pointList.addAll(Arrays.asList(POINTS_ARRAY));
+
+        // counts the number of the crossed numbers 
+        for(int i = 0 ; i < yellowRow.size() ; i++){
             if (yellowRow.get(i).contains("X")){
                 countCross++;
             }
         }
-
-        if(countCross == 1){
-            points = 1;
-        } else if (countCross == 2) {
-            points = 3;
-        } else if (countCross == 3) {
-            points = 6;
-        } else if (countCross == 4) {
-            points = 10;
-        } else if (countCross == 5) {
-            points = 15;
-        } else if (countCross == 6) {
-            points = 21;
-        } else if (countCross == 7) {
-            points = 28;
-        } else if (countCross == 8) {
-            points = 36;
-        } else if (countCross == 9) {
-            points = 45;
-        } else if (countCross == 10) {
-            points = 55;
-        } else if (countCross == 11) {
-            points = 66;
-        } else if (countCross == 12) {
-            points = 78;
-        }
+        // finds the corresponding point from the list and returns it. 
+        points = Integer.parseInt(pointList.get(countCross));
 
         return points;
     }
+
     protected int calculateGreenPoints(ArrayList<String> greenRow){
         int points = 0;
         int countCross = 0;
 
-        for(int i=0 ; i<greenRow.size() ; i++){
+        ArrayList <String> pointList = new ArrayList<>();
+        // adding all the point from a normal Array to an ArrayList for simple calculations
+        pointList.addAll(Arrays.asList(POINTS_ARRAY));
+
+        // counts the number of the crossed numbers 
+        for(int i = 0 ; i < greenRow.size() ; i++){
             if (greenRow.get(i).contains("X")){
                 countCross++;
             }
         }
-
-        if(countCross == 1){
-            points = 1;
-        } else if (countCross == 2) {
-            points = 3;
-        } else if (countCross == 3) {
-            points = 6;
-        } else if (countCross == 4) {
-            points = 10;
-        } else if (countCross == 5) {
-            points = 15;
-        } else if (countCross == 6) {
-            points = 21;
-        } else if (countCross == 7) {
-            points = 28;
-        } else if (countCross == 8) {
-            points = 36;
-        } else if (countCross == 9) {
-            points = 45;
-        } else if (countCross == 10) {
-            points = 55;
-        } else if (countCross == 11) {
-            points = 66;
-        } else if (countCross == 12) {
-            points = 78;
-        }
+        // finds the corresponding point from the list and returns it. 
+        points = Integer.parseInt(pointList.get(countCross));
 
         return points;
     }
+
     protected int calculateBluePoints(ArrayList<String> blueRow){
         int points = 0;
         int countCross = 0;
 
-        for(int i=0 ; i<blueRow.size() ; i++){
+        ArrayList <String> pointList = new ArrayList<>();
+        // adding all the point from a normal Array to an ArrayList for simple calculations
+        pointList.addAll(Arrays.asList(POINTS_ARRAY));
+
+        // counts the number of the crossed numbers 
+        for(int i = 0 ; i < blueRow.size() ; i++){
             if (blueRow.get(i).contains("X")){
                 countCross++;
             }
         }
-
-        if(countCross == 1){
-            points = 1;
-        } else if (countCross == 2) {
-            points = 3;
-        } else if (countCross == 3) {
-            points = 6;
-        } else if (countCross == 4) {
-            points = 10;
-        } else if (countCross == 5) {
-            points = 15;
-        } else if (countCross == 6) {
-            points = 21;
-        } else if (countCross == 7) {
-            points = 28;
-        } else if (countCross == 8) {
-            points = 36;
-        } else if (countCross == 9) {
-            points = 45;
-        } else if (countCross == 10) {
-            points = 55;
-        } else if (countCross == 11) {
-            points = 66;
-        } else if (countCross == 12) {
-            points = 78;
-        }
+        // finds the corresponding point from the list and returns it. 
+        points = Integer.parseInt(pointList.get(countCross));
 
         return points;
     }
+
 
     protected int calculatePenaltiesPoints(ArrayList<String> redRow,ArrayList<String> yellowRow,ArrayList<String> greenRow,ArrayList<String> blueRow){
         int points = 0;

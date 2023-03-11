@@ -199,6 +199,8 @@ public class PlayerDataRW {
         }
     }
 
+    // just for testing purpose
+/* 
     public String getPlayerBoardData(String fileName) {
         String a = "";
         String path = getPlayerFileIndex(fileName);
@@ -206,6 +208,7 @@ public class PlayerDataRW {
         a = ""+playerBoardList;
         return a;
     }
+*/
 
     // method receives 3 inputs: file name, color, and the number to be crossed 
     // method finds the specific number and checks if it is already marked or not
@@ -252,7 +255,7 @@ public class PlayerDataRW {
     // method gets: file/player name, color and number
     // then gets the line, which contains the number to be crossed as an Arraylist
     // raplaces the number with "X" sign and returns the line as a normal String
-    public String createALineWithCrossedNumber(String fileName, String color, String number) {
+    private String createALineWithCrossedNumber(String fileName, String color, String number) {
         String answer = "";
         int i = getNumberIndex(color, number);
         ArrayList <String> aL = new ArrayList<>();
