@@ -170,14 +170,14 @@ public class Start {
         answer = cnn.crossANumber(fileName, color, number);
         return answer;
     }
-
+/* 
     public static ArrayList<String> testNumberOfPenalties(String fileName){
         ArrayList<String> answer = new ArrayList<>();
         PlayerDataRW pd = new PlayerDataRW();
         answer = pd.checkThePenalties(fileName);
         return answer;
     }
-
+*/
     public static int testGetPenaltyNumber(String fileName){
         int answer = 0;
         Connector cnn = new Connector();

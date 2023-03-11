@@ -106,7 +106,7 @@ public class Calculations {
         return points;
     }
 
-    protected int calculateAllPointsOfPlayer(ArrayList<String> redRow,ArrayList<String> yellowRow,ArrayList<String> greenRow,ArrayList<String> blueRow){
+    protected int calculateAllPointsOfPlayer(String fileName){
         int redPoints = calculateRedPoints(redRow);
         int yellowPoints = calculateYellowPoints(yellowRow);
         int greenPoints = calculateGreenPoints(greenRow);
@@ -116,12 +116,13 @@ public class Calculations {
 
         return playersPoints;
     }
+
     protected boolean checkIfAnyPlayerHasFourPenalties(){
         boolean check = false;
 
-
         return check;
     }
+
     protected boolean checkIfTwoRowsAreDisabled(){
         boolean check = false;
 
