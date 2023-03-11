@@ -357,7 +357,8 @@ public class PlayerDataRW {
         return b;
     }
 
-    public ArrayList <String> checkThePenalties(String fileName) {
+    // method gets the player name and returns all the penalties as an ArrayList
+    protected ArrayList <String> checkThePenalties(String fileName) {
         ArrayList<String> answer = new ArrayList<>();
         String path = getPlayerFileIndex(fileName);
         readPlayersFile(path);
@@ -369,6 +370,7 @@ public class PlayerDataRW {
         
         return answer;
     }
+
 
     // method returns the Path of a given player
     private String getPlayerFileIndex(String fileName) {
