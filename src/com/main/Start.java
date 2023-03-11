@@ -157,6 +157,14 @@ public class Start {
         return answer;
     }
 
+    public static String testGetACrossedLine(String fileName, String color, String number){
+        String answer = "";
+        PlayerDataRW pd = new PlayerDataRW();
+        answer = pd.createALineWithCrossedNumber(fileName, color, number);
+        return answer;
+    }
+
+
     public static void main(String[] args) throws Exception{
         //toWelcomePage();
         //System.out.println(testing1());
@@ -178,11 +186,12 @@ public class Start {
         //System.out.println(testgetDiceData());
         //testSaveDice("1,1,1,1,1,1");
         //System.out.println(testRollingDice());
-        System.out.println(testReadPlayerData("p1"));
+        //System.out.println(testReadPlayerData("p1"));
         //System.out.println(testGetOneNumber("p1", "red", "2"));
         //System.out.println(testGetOneLine("p1", "blu"));
         //System.out.println(testIsNumCrossed("p1", "red", "5"));
         //testCreateOnePlayerFiles("p2");
+        //System.out.println(testGetACrossedLine("p1", "gre", "10"));
     }
 
 }

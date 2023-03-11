@@ -17,6 +17,7 @@ public class PlayerDataRW {
     private static final String DICE_FILE    = "src\\com\\databases\\dice\\diceRoll-";
     
     private static final String COMMA_DELIMITER = ",";
+    private static final String CROSSED_SYMBOL = "X";
 
     private static final int LINE_RED_INDEX = 0;
     private static final int LINE_YEL_INDEX = 1;
@@ -238,20 +239,32 @@ public class PlayerDataRW {
         return answer;
     }
 
+    private String createALineWithCrossedNumber(String fileName, String color, String number) {
+        String answer = "";
+        int i = getNumberIndex(color, number);
+        ArrayList <String> aL = new ArrayList<>();
+        aL = readOnlyOneLine(fileName, color);
+        aL.set(i, CROSSED_SYMBOL);
+        answer = ""+aL;
+        // cuts the first and the last character from the String, which are the parantheses
+        answer = answer.substring(1, answer.length()-1);
+        return answer;
+
+    }
     protected String crossANumberInBoard(String fileName, String color, String number) {
         String answer = "";
         boolean b = checkIfNumberIsCrossed(fileName, color, number);
         if (b == false) {
-            
+            saveChangesIntoPlayerFile(fileName, number);
         } else {
-            
+            answer = "Number is already Crossed!";
         }
         return answer;
     }
 
-    private String saveChangesIntoPlayerFile(String playerName, String bookedString, String roomNo, String date, int dateIndex, String number) {
+    private String saveChangesIntoPlayerFile(String fileName, String number) {
         String answer = "";
-        String s = getPlayerFileIndex(playerName);
+        String s = getPlayerFileIndex(fileName);
         Connector cnn = new Connector();
         String currentPath = cnn.getLastFilePath(s);
         cnn.createOnePlayerFiles(s);
@@ -265,11 +278,11 @@ public class PlayerDataRW {
                 if (!dataLine[0].equals("RoomNo")) {
                     if (!dataLine[0].equals(roomNo)) {
                         String newLine = csvLine;
-                        writeToPlayerFile(csvLine, playerName);
+                        writeToPlayerFile(csvLine, fileName);
                     }
                     else if (dataLine[0].equals(roomNo)) {
                         String newLine = "";
-                        writeToPlayerFile(csvLine, playerName);
+                        writeToPlayerFile(csvLine, fileName);
                     }
                 }
             }
