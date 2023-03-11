@@ -156,14 +156,20 @@ public class Start {
         answer = cnn.isNumberCrossed(fileName, color, number);
         return answer;
     }
-/* 
+/* */
     public static String testGetACrossedLine(String fileName, String color, String number){
         String answer = "";
         PlayerDataRW pd = new PlayerDataRW();
         answer = pd.createALineWithCrossedNumber(fileName, color, number);
         return answer;
     }
-*/
+
+    public static String testCrossANumber(String fileName, String color, String number){
+        String answer = "";
+        Connector cnn = new Connector();
+        answer = cnn.crossANumber(fileName, color, number);
+        return answer;
+    }
 
     public static void main(String[] args) throws Exception{
         //toWelcomePage();
@@ -191,7 +197,8 @@ public class Start {
         //System.out.println(testGetOneLine("p1", "blu"));
         //System.out.println(testIsNumCrossed("p1", "red", "5"));
         //testCreateOnePlayerFiles("p2");
-        //System.out.println(testGetACrossedLine("p1", "gre", "10"));
+        //System.out.println(testGetACrossedLine("p1", "red", "10"));
+        System.out.println(testCrossANumber("p1", "red", "10"));
     }
 
 }

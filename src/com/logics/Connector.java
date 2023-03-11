@@ -164,6 +164,13 @@ public class Connector {
         return b;
     }
 
+    public String crossANumber(String fileName, String color, String number) {
+        String answer = "";
+        PlayerDataRW pd = new PlayerDataRW();
+        answer = pd.crossANumberInBoard(fileName, color, number);
+        return answer;
+    }
+
     //------------------------------------------------------------
     //---7.------------Calculations methods-----------------------
     //------------------------------------------------------------

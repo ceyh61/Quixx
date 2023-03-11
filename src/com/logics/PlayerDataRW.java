@@ -212,6 +212,9 @@ public class PlayerDataRW {
         // finds the correct index of the chosen number in then ArrayList
         int c = getNumberIndex(color, number);
         answer = aList.get(c);
+        // to clear the list for further use 
+        // else(in crossANumberInBoard method the value of newLine will be doubled! )
+        aList.clear();
         return answer;
     }
 
@@ -220,6 +223,7 @@ public class PlayerDataRW {
     // it returns the requested line as an ArrayList back
     protected ArrayList<String> readOnlyOneLine(String fileName, String color) {
         ArrayList<String> answer = new ArrayList<>();
+        answer.clear();
         String path = getPlayerFileIndex(fileName);
         // first puts all the player file data into ArrayLists
         readPlayersFile(path);
@@ -239,24 +243,28 @@ public class PlayerDataRW {
         return answer;
     }
 
-    private String createALineWithCrossedNumber(String fileName, String color, String number) {
+    public String createALineWithCrossedNumber(String fileName, String color, String number) {
         String answer = "";
         int i = getNumberIndex(color, number);
         ArrayList <String> aL = new ArrayList<>();
         aL = readOnlyOneLine(fileName, color);
         aL.set(i, CROSSED_SYMBOL);
-        answer = ""+aL;
+        String a = ""+aL;
         // cuts the first and the last character from the String, which are the parantheses
-        answer = answer.substring(1, answer.length()-1);
+        String b = a.substring(1, a.length()-1);
+        // eleminates all the spaces from the String so there would be no problem in CSV file
+        answer = b.replaceAll("\\s", "");
         return answer;
 
     }
     protected String crossANumberInBoard(String fileName, String color, String number) {
         String answer = "";
         boolean b = checkIfNumberIsCrossed(fileName, color, number);
+        String newLine = createALineWithCrossedNumber(fileName, color, number);
+        answer = newLine;
         if (b == false) {
-            String newLine = createALineWithCrossedNumber(fileName, color, number);
-            answer = saveChangesIntoPlayerFile(fileName, color, number, newLine);
+            
+            saveChangesIntoPlayerFile(fileName, color, number, newLine);
         } else {
             answer = "Number is already Crossed!";
         }
@@ -274,16 +282,20 @@ public class PlayerDataRW {
         try {
             BufferedReader file_out = new BufferedReader(new FileReader(currentPath));
             String csvLine = "";
-            int count = 0;
+            int count = -1;
             while ( (csvLine = file_out.readLine()) != null ) {
                 count++;
                 // checks for the color/line that is needed to be rewritten
                 if (count == c) {
                     // writes the new line instead of the old one
                     writeToPlayerFile(fileName, newLine);
-                }else{
+                    csvLine = "";
+                    newLine = "";
+                }
+                else if (count != c){
                     // writes back the old lines into the file
                     writeToPlayerFile(fileName, csvLine);
+                    csvLine = "";
                 }
             }
             file_out.close();
