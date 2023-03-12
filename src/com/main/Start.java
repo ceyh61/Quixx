@@ -214,7 +214,7 @@ public class Start {
         //System.out.println(testGetACrossedLine("p1", "red", "10"));
         //System.out.println(testCrossANumber("p1", "blu", "10"));
         //System.out.println(testNumberOfPenalties("p1"));
-        System.out.println(testGetPenaltyNumber("p1"));
+        //System.out.println(testGetPenaltyNumber("p1"));
     }
 
 }
