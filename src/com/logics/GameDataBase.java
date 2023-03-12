@@ -115,7 +115,7 @@ public class GameDataBase {
         String path = createPath_ForPlayerFile(diceFile);
         Connector cnn = new Connector();
         cnn.savePlayerFilePath(path, diceFile);
-        String inputDates = "White1,White2,Red,Yellow,Green,Blue";   
+        String inputDates = "White1,White2,Red,Yellow,Green,Blue"+"\n"+"0,0,0,0,0,0";   
         File csvFile = new File(path);
         FileWriter fileWriter;
         try  {
