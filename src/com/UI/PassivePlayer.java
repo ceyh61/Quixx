@@ -3,6 +3,7 @@ package com.UI;
 import javax.swing.*;
 
 import com.logics.Connector;
+import com.logics.GameProcess;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -28,9 +29,12 @@ public class PassivePlayer extends JFrame implements ActionListener {
     private ButtonGroup wRadio_Bg;
     private JTextArea warning_Ta;
     private JButton continue_Bt;
+    private String passivePlayer;
+    private GameProcess process;
 
-    public PassivePlayer() {
-
+    public PassivePlayer(String passivePlayer, GameProcess process) {
+        this.passivePlayer = passivePlayer;
+        this.process = process;
         setTitle("Passive Player");
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -48,7 +52,6 @@ public class PassivePlayer extends JFrame implements ActionListener {
                 boolean greenRow = new Connector().isYellowRowComplete();
                 boolean yellowRow = new Connector().isGreenRowComplete();
                 boolean blueRow = new Connector().isBlueRowComplete();
-
                 if (redRow){
                     wRed_Rbt.setEnabled(false);
                 }
@@ -62,6 +65,17 @@ public class PassivePlayer extends JFrame implements ActionListener {
                     wBlue_Rbt.setEnabled(false);
                 }
             }
+
+            public void windowClosed(WindowEvent e){
+                process.addCountWindows();
+                if (process.getCountWindows() == process.getPassivePlayer().size()){
+                    process.resetCountWindows();
+                    process.nextRound();
+                    new DicePage(process);
+                }
+            }
+
+
         });
 
         // create the player name label
@@ -129,7 +143,8 @@ public class PassivePlayer extends JFrame implements ActionListener {
         bDice_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(bDice_Lb);
 
-        penalty_Lb = new JLabel("Penalties: 0");
+        Connector cnn = new Connector();
+        penalty_Lb = new JLabel("Penalties: " + cnn.getPenaltyNumbers(passivePlayer));
         penalty_Lb.setFont(new Font("Arial", Font.BOLD, 18));
         penalty_Lb.setBounds(575, 20, 150, 50);
         penalty_Lb.setOpaque(true);
@@ -217,12 +232,16 @@ public class PassivePlayer extends JFrame implements ActionListener {
         continue_Bt.setOpaque(true);
         continue_Bt.setBackground(new Color(30, 70, 125));
         continue_Bt.setForeground(Color.white);
+        continue_Bt.addActionListener(this);
         c.add(continue_Bt);
 
         setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource() == continue_Bt){
+            dispose();
+            }
+        }
     }
-}
+

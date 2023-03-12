@@ -220,11 +220,14 @@ public class Start {
         //System.out.println(x);
         //System.out.println(c.checkIfTwoRowsAreDisabled(5));
 
-        /*GameProcess x = new GameProcess(4);
+        Connector c = new Connector();
+        System.out.println(c.checkGameEnd(4));
+
+        GameProcess x = new GameProcess(4);
         System.out.println("Aktiv: " + x.getActivePlayer());
         ArrayList<String> passive = x.getPassivePlayer();
         for (String pl: passive) {
-            System.out.println(pl);
+            System.out.println("Passiv : " + pl);
         }
 
         x.nextRound();
@@ -233,8 +236,10 @@ public class Start {
 
         ArrayList<String> pllist = x.getPlayerlist();
         for (String pl: passive) {
-            System.out.println("list: " + pl);
-        }*/
+            System.out.println("Passiv : " + pl);
+        }
+        new Welcome();
+
 
     }
 

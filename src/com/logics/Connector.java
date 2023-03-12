@@ -119,7 +119,11 @@ public class Connector {
     public String getLastDiceData() {
         String answer = "";
         DiceDataRW dd = new DiceDataRW();
-        answer = dd.readDiceFile();
+        String a = ""+ dd.readDiceFile();
+        // cuts the first and the last character from the String, which are the parantheses
+        String b = a.substring(1, a.length()-1);
+        // eleminates all the spaces from the String so there would be no problem in CSV file
+        answer = b.replaceAll("\\s", "");
         return answer;
     }
 
@@ -197,6 +201,15 @@ public class Connector {
         Calculations cal = new Calculations();
         answer = cal.calculatePenaltiesPoints(fileName);
         return answer;
+    }
+
+    public boolean checkGameEnd(int playersCount){
+        Calculations cal = new Calculations();
+        boolean end = false;
+        if (cal.checkIfAnyPlayerHasFourPenalties(playersCount) || cal.checkIfTwoRowsAreDisabled(playersCount)){
+            end = true;
+        }
+        return end;
     }
 
     public boolean isRedRowComplete() {

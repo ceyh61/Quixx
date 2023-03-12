@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
 import com.logics.Connector;
+import com.logics.GameProcess;
 
 public class DicePage extends JFrame implements ActionListener{
 
@@ -26,13 +27,18 @@ public class DicePage extends JFrame implements ActionListener{
     private JButton roll_Bt;
     private JButton exit_Bt;
 
-    public DicePage() {
+    private JButton continue_Bt;
+    private GameProcess process;
+
+    public DicePage(GameProcess process) {
+
+        this.process = process;
 
         setTitle("Dice Page");
         setBounds(300, 100, 700, 420);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setResizable(false);
-        setVisible(true);
+
 
         c = getContentPane();
         c.setLayout(null);
@@ -94,7 +100,7 @@ public class DicePage extends JFrame implements ActionListener{
         c.add(p5_Name_Lb);
 
         // creates a label for the name of the first white dice
-        whiteDice1_LB = new JLabel("1", SwingConstants.CENTER);
+        whiteDice1_LB = new JLabel("0", SwingConstants.CENTER);
         whiteDice1_LB.setFont(new Font("Arial", Font.PLAIN, 18));
         whiteDice1_LB.setSize(50, 50);
         whiteDice1_LB.setLocation(100, 150);
@@ -102,7 +108,7 @@ public class DicePage extends JFrame implements ActionListener{
         c.add(whiteDice1_LB);
 
         // creates a label for the name of the second white dice
-        whiteDice2_LB = new JLabel("2", SwingConstants.CENTER);
+        whiteDice2_LB = new JLabel("0", SwingConstants.CENTER);
         whiteDice2_LB.setFont(new Font("Arial", Font.PLAIN, 18));
         whiteDice2_LB.setSize(50, 50);
         whiteDice2_LB.setLocation(180, 150);
@@ -110,7 +116,7 @@ public class DicePage extends JFrame implements ActionListener{
         c.add(whiteDice2_LB);
 
         // creates a label for the name of the first white dice
-        redDice_LB = new JLabel("3", SwingConstants.CENTER);
+        redDice_LB = new JLabel("0", SwingConstants.CENTER);
         redDice_LB.setFont(new Font("Arial", Font.PLAIN, 18));
         redDice_LB.setSize(50, 50);
         redDice_LB.setLocation(260, 150);
@@ -118,7 +124,7 @@ public class DicePage extends JFrame implements ActionListener{
         c.add(redDice_LB);
 
         // creates a label for the name of the first white dice
-        yellowDice_LB = new JLabel("4", SwingConstants.CENTER);
+        yellowDice_LB = new JLabel("0", SwingConstants.CENTER);
         yellowDice_LB.setFont(new Font("Arial", Font.PLAIN, 18));
         yellowDice_LB.setSize(50, 50);
         yellowDice_LB.setLocation(340, 150);
@@ -126,7 +132,7 @@ public class DicePage extends JFrame implements ActionListener{
         c.add(yellowDice_LB);
 
         // creates a label for the name of the first white dice
-        greenDice_LB = new JLabel("5", SwingConstants.CENTER);
+        greenDice_LB = new JLabel("0", SwingConstants.CENTER);
         greenDice_LB.setFont(new Font("Arial", Font.PLAIN, 18));
         greenDice_LB.setSize(50, 50);
         greenDice_LB.setLocation(420, 150);
@@ -134,7 +140,7 @@ public class DicePage extends JFrame implements ActionListener{
         c.add(greenDice_LB);
 
         // creates a label for the name of the first white dice
-        blueDice_LB = new JLabel("6", SwingConstants.CENTER);
+        blueDice_LB = new JLabel("0", SwingConstants.CENTER);
         blueDice_LB.setFont(new Font("Arial", Font.PLAIN, 18));
         blueDice_LB.setSize(50, 50);
         blueDice_LB.setLocation(500, 150);
@@ -154,23 +160,52 @@ public class DicePage extends JFrame implements ActionListener{
         exit_Bt = new JButton("EXIT");
         exit_Bt.setFont(new Font("Arial", Font.PLAIN, 18));
         exit_Bt.setSize(120, 30);
-        exit_Bt.setLocation(280, 320);
+        exit_Bt.setLocation(200, 320);
         exit_Bt.setFocusable(false);
         exit_Bt.addActionListener(this);
         c.add(exit_Bt);
+
+        continue_Bt = new JButton("Continue");
+        continue_Bt.setFont(new Font("Arial", Font.PLAIN, 18));
+        continue_Bt.setSize(120, 30);
+        continue_Bt.setLocation(380, 320);
+        continue_Bt.setFocusable(false);
+        continue_Bt.addActionListener(this);
+        continue_Bt.setEnabled(false);
+        c.add(continue_Bt);
+        setVisible(true);
+
+
     }
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == roll_Bt) {
             Connector cnn = new Connector();
-            cnn.getDiceRollingResult();
+            cnn.saveDiceData(cnn.getDiceRollingResult());
+            String wwuerfel = cnn.getLastDiceData();
+            String[] ergebnis = wwuerfel.split(",");
+            whiteDice1_LB.setText(ergebnis[0]);
+            whiteDice2_LB.setText(ergebnis[1]);
+            redDice_LB.setText(ergebnis[2]);
+            yellowDice_LB.setText(ergebnis[3]);
+            greenDice_LB.setText(ergebnis[4]);
+            blueDice_LB.setText(ergebnis[5]);
+            roll_Bt.setEnabled(false);
+            continue_Bt.setEnabled(true);
         } 
 
         else if(e.getSource() == exit_Bt){
             // closes the program
             System.exit(0);
+        }
+
+        if (e.getSource() == continue_Bt) {
+            dispose();
+            new ActivePlayer(process);
         }
     }
 }

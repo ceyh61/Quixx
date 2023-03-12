@@ -7,12 +7,14 @@ public class GameProcess {
     private String activePlayer;
     private ArrayList<String> passivePlayer = new ArrayList<String>();
     ArrayList<String> playerlist = new ArrayList<String>();
+    private int countWindows;
     public GameProcess(int playersCount){
-        this.activePlayer = null;
+        this.countWindows = 0;
         for (int i = 0; i < playersCount; i++) {
             String playerName = "p" + (i + 1);
             playerlist.add(playerName);
         }
+        this.activePlayer = playerlist.get(0);
     }
 
     /*protected cycle(int playersCount){
@@ -20,11 +22,21 @@ public class GameProcess {
     }*/
 
     public String getActivePlayer(){
-            if (activePlayer == null){
-            activePlayer = playerlist.get(0);
-        }
-
         return activePlayer;
+    }
+
+    public int getCountWindows(){
+        return countWindows;
+    }
+
+    public int addCountWindows(){
+        countWindows++;
+        return countWindows;
+    }
+
+    public int resetCountWindows(){
+        countWindows = 0;
+        return countWindows;
     }
 
     public ArrayList<String> getPassivePlayer(){

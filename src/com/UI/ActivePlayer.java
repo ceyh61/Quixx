@@ -3,9 +3,12 @@ package com.UI;
 import javax.swing.*;
 
 import com.logics.Connector;
+import com.logics.GameProcess;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 public class ActivePlayer extends JFrame implements ActionListener {
     private Container c;
     private JLabel pName_Lb;
@@ -36,9 +39,13 @@ public class ActivePlayer extends JFrame implements ActionListener {
     private JTextField cNumber_Tf;
     private JTextArea warning_Ta;
     private JButton continue_Bt;
+    private GameProcess process;
+    private String activePlayer;
 
-    public ActivePlayer() {
 
+    public ActivePlayer(GameProcess process) {
+        this.process = process;
+        this.activePlayer = process.getActivePlayer();
         setTitle("Active Player");
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -89,8 +96,12 @@ public class ActivePlayer extends JFrame implements ActionListener {
         pName_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(pName_Lb);
 
+        Connector cnn = new Connector();
+        String wwuerfel = cnn.getLastDiceData();
+        String[] ergebnis = wwuerfel.split(",");
+
         // create the first white dice label
-        wDice1_Lb = new JLabel("W1");
+        wDice1_Lb = new JLabel(ergebnis[0]);
         wDice1_Lb.setOpaque(true);
         wDice1_Lb.setBackground(Color.white);
         wDice1_Lb.setFont(new Font("Arial", Font.BOLD, 18));
@@ -99,7 +110,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
         wDice1_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(wDice1_Lb);
 
-        wDice2_Lb = new JLabel("W2");
+        wDice2_Lb = new JLabel(ergebnis[1]);
         wDice2_Lb.setOpaque(true);
         wDice2_Lb.setBackground(Color.white);
         wDice2_Lb.setFont(new Font("Arial", Font.BOLD, 18));
@@ -108,7 +119,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
         wDice2_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(wDice2_Lb);
 
-        rDice_Lb = new JLabel("R");
+        rDice_Lb = new JLabel(ergebnis[2]);
         rDice_Lb.setFont(new Font("Arial", Font.BOLD, 18));
         rDice_Lb.setBounds(315, 20, 50, 50);
         rDice_Lb.setOpaque(true);
@@ -117,7 +128,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
         rDice_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(rDice_Lb);
 
-        yDice_Lb = new JLabel("Y");
+        yDice_Lb = new JLabel(ergebnis[3]);
         yDice_Lb.setFont(new Font("Arial", Font.BOLD, 18));
         yDice_Lb.setBounds(380, 20, 50, 50);
         yDice_Lb.setOpaque(true);
@@ -126,7 +137,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
         yDice_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(yDice_Lb);
 
-        gDice_Lb = new JLabel("G");
+        gDice_Lb = new JLabel(ergebnis[4]);
         gDice_Lb.setFont(new Font("Arial", Font.BOLD, 18));
         gDice_Lb.setBounds(445, 20, 50, 50);
         gDice_Lb.setOpaque(true);
@@ -135,7 +146,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
         gDice_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(gDice_Lb);
 
-        bDice_Lb = new JLabel("B");
+        bDice_Lb = new JLabel(ergebnis[5]);
         bDice_Lb.setFont(new Font("Arial", Font.BOLD, 18));
         bDice_Lb.setBounds(510, 20, 50, 50);
         bDice_Lb.setOpaque(true);
@@ -144,7 +155,8 @@ public class ActivePlayer extends JFrame implements ActionListener {
         bDice_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(bDice_Lb);
 
-        penalty_Lb = new JLabel("Penalties: 0");
+
+        penalty_Lb = new JLabel("Penalties: " + cnn.getPenaltyNumbers(activePlayer));
         penalty_Lb.setFont(new Font("Arial", Font.BOLD, 18));
         penalty_Lb.setBounds(575, 20, 150, 50);
         penalty_Lb.setOpaque(true);
@@ -348,8 +360,12 @@ public class ActivePlayer extends JFrame implements ActionListener {
             if (cBlue_Rbt.isSelected()) {
 
             }
-            new PassivePlayer();
+            ArrayList<String> passivePlayer = process.getPassivePlayer();
             dispose();
+            PassivePlayer[] windows = new PassivePlayer[passivePlayer.size()];
+            for (int i = 0; i < windows.length; i++) {
+                windows[i] = new PassivePlayer(passivePlayer.get(i), process);
+            }
         }
     }
 }

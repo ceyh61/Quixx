@@ -137,10 +137,9 @@ public class Calculations {
             for (int j = 0; j < penaltyList.size(); j++) {
                 if(penaltyList.get(j).equalsIgnoreCase("Y")) {
                     counter++;
-                    System.out.println(fileName + "Ja");
                 }
             }
-            System.out.println(counter);
+
             if (counter ==4){
                 check = true;
                 break;
@@ -172,8 +171,6 @@ public class Calculations {
                 counter++;
             }
         }
-
-        System.out.println(counter);
 
         if (counter>=2){
             check = true;

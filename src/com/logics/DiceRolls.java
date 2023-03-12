@@ -23,7 +23,12 @@ public class DiceRolls {
             int randomNo = ( (int) (Math.random()*6) ) + 1;
             diceList.add(randomNo);
         }
-        answer = ""+diceList;
+
+        String a = ""+diceList;
+        // cuts the first and the last character from the String, which are the parantheses
+        String b = a.substring(1, a.length()-1);
+        // eleminates all the spaces from the String so there would be no problem in CSV file
+        answer = b.replaceAll("\\s", "");
         return answer;
     }
 

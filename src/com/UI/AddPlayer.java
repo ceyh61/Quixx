@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import com.logics.Connector;
+import com.logics.GameProcess;
 
 public class AddPlayer extends JFrame implements ActionListener{
 
@@ -24,8 +25,10 @@ public class AddPlayer extends JFrame implements ActionListener{
     private JButton continue_Bt;
     private JButton exit_Bt;
 
-    public AddPlayer() {
+    private int numberPlayers;
 
+    public AddPlayer(int numberPlayers) {
+        this.numberPlayers = numberPlayers;
         setTitle("Welcome");
         setBounds(300, 100, 400, 400);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -153,12 +156,14 @@ public class AddPlayer extends JFrame implements ActionListener{
             String p4_Name = p4_Tf.getText();
             String p5_Name = p5_Tf.getText();
 
-            msg = cnn.validateName(p1_Name);
+            //msg = cnn.validateName(p1_Name);
 
             if (!msg.isEmpty()) {
                 JOptionPane.showMessageDialog(null, ""+msg);
             } else {
-                new DicePage();
+
+                GameProcess game = new GameProcess(numberPlayers);
+                new DicePage(game);
                 dispose();
             }
         } 
