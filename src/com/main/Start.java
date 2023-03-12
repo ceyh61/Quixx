@@ -214,7 +214,28 @@ public class Start {
         //System.out.println(testGetACrossedLine("p1", "red", "10"));
         //System.out.println(testCrossANumber("p1", "blu", "10"));
         //System.out.println(testNumberOfPenalties("p1"));
-        //System.out.println(testGetPenaltyNumber("p1"));
+        ////System.out.println(testGetPenaltyNumber("p1"));
+        //Calculations c = new Calculations();
+        //int x = c.calculateAllPointsOfPlayer("p1");
+        //System.out.println(x);
+        //System.out.println(c.checkIfTwoRowsAreDisabled(5));
+
+        /*GameProcess x = new GameProcess(4);
+        System.out.println("Aktiv: " + x.getActivePlayer());
+        ArrayList<String> passive = x.getPassivePlayer();
+        for (String pl: passive) {
+            System.out.println(pl);
+        }
+
+        x.nextRound();
+        System.out.println("Aktiv: " + x.getActivePlayer());
+        passive = x.getPassivePlayer();
+
+        ArrayList<String> pllist = x.getPlayerlist();
+        for (String pl: passive) {
+            System.out.println("list: " + pl);
+        }*/
+
     }
 
 }
