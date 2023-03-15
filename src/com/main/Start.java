@@ -221,7 +221,7 @@ public class Start {
         //System.out.println(c.checkIfTwoRowsAreDisabled(5));
 
         Connector c = new Connector();
-        System.out.println(c.checkGameEnd(4));
+        System.out.println();
 
         GameProcess x = new GameProcess(4);
         System.out.println("Aktiv: " + x.getActivePlayer());
@@ -234,10 +234,7 @@ public class Start {
         System.out.println("Aktiv: " + x.getActivePlayer());
         passive = x.getPassivePlayer();
 
-        ArrayList<String> pllist = x.getPlayerlist();
-        for (String pl: passive) {
-            System.out.println("Passiv : " + pl);
-        }
+
         new Welcome();
 
 

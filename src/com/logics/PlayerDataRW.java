@@ -261,6 +261,7 @@ public class PlayerDataRW {
         ArrayList <String> aL = new ArrayList<>();
         // gets the specified line from the player file
         aL = readOnlyOneLine(fileName, color);
+
         aL.set(i, CROSSED_SYMBOL);
         String a = ""+aL;
         // cuts the first and the last character from the String, which are the parantheses
@@ -290,7 +291,7 @@ public class PlayerDataRW {
 
     // method gets : file/player name, color, number and the new line with the crossed number
     // reads and copies the old file into the new file but replaces the line with the newly crossed number
-    private String saveChangesIntoPlayerFile(String fileName, String color, String number, String newLine) {
+    protected String saveChangesIntoPlayerFile(String fileName, String color, String number, String newLine) {
         String answer = "";
         int c = getColorIndex(color);
         String s = getPlayerFileIndex(fileName);

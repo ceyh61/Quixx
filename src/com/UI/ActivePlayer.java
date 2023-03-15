@@ -41,9 +41,12 @@ public class ActivePlayer extends JFrame implements ActionListener {
     private JButton continue_Bt;
     private GameProcess process;
     private String activePlayer;
+    private int addierteZahl;
+    private  JLabel playercard_Lb;
 
 
     public ActivePlayer(GameProcess process) {
+        Connector cnn = new Connector();
         this.process = process;
         this.activePlayer = process.getActivePlayer();
         setTitle("Active Player");
@@ -96,7 +99,6 @@ public class ActivePlayer extends JFrame implements ActionListener {
         pName_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(pName_Lb);
 
-        Connector cnn = new Connector();
         String wwuerfel = cnn.getLastDiceData();
         String[] ergebnis = wwuerfel.split(",");
 
@@ -221,8 +223,10 @@ public class ActivePlayer extends JFrame implements ActionListener {
         wNumber_Lb.setBounds(655, 220, 60, 25);
         wNumber_Lb.setForeground(Color.BLACK);
         c.add(wNumber_Lb);
-
-        wSumNumber_Lb = new JLabel("9");
+        int zahl1 = Integer.parseInt(ergebnis[0]);
+        int zahl2 = Integer.parseInt(ergebnis[1]);
+        addierteZahl = zahl1+zahl2;
+        wSumNumber_Lb = new JLabel("" + addierteZahl);
         wSumNumber_Lb.setFont(new Font("Arial", Font.BOLD, 14));
         wSumNumber_Lb.setBounds(715, 220, 50, 25);
         wSumNumber_Lb.setOpaque(true);
@@ -230,6 +234,15 @@ public class ActivePlayer extends JFrame implements ActionListener {
         wSumNumber_Lb.setForeground(Color.WHITE);
         wSumNumber_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(wSumNumber_Lb);
+
+        playercard_Lb = new JLabel(cnn.get_Player_Card_UI(activePlayer));
+        playercard_Lb.setFont(new Font("Arial",Font.BOLD,18));
+        playercard_Lb.setBounds(20,80,410,350);
+        playercard_Lb.setOpaque(true);
+        //scorecard_Lb.setBackground(new Color(30, 70, 125));
+        playercard_Lb.setForeground(Color.BLACK);
+        playercard_Lb.setHorizontalAlignment(SwingConstants.CENTER);
+        c.add(playercard_Lb);
 
         cCross_Lb = new JLabel("Cross with the help of the colored dice:");
         cCross_Lb.setFont(new Font("Arial", Font.BOLD, 16));
@@ -334,31 +347,40 @@ public class ActivePlayer extends JFrame implements ActionListener {
         if(e.getSource() == continue_Bt) {
             if (wNothing_Rbt.isSelected() && cNothing_Rbt.isSelected()) {
                 //Do Penalty for this Player
-                System.out.println("test123");
+                Connector cnn = new Connector();
+                cnn.addPenaltie(activePlayer);
             }
             if (wRed_Rbt.isSelected()) {
-
+                Connector cnn = new Connector();
+                cnn.crossANumber(activePlayer, "red", "" + addierteZahl);
             }
             if (wYellow_Rbt.isSelected()) {
-
+                Connector cnn = new Connector();
+                cnn.crossANumber(activePlayer, "yel", "" + addierteZahl);
             }
             if (wGreen_Rbt.isSelected()) {
-
+                Connector cnn = new Connector();
+                cnn.crossANumber(activePlayer, "gre", "" + addierteZahl);
             }
             if (wBlue_Rbt.isSelected()) {
-
+                Connector cnn = new Connector();
+                cnn.crossANumber(activePlayer, "blu", "" + addierteZahl);
             }
             if (cRed_Rbt.isSelected()) {
-
+                Connector cnn = new Connector();
+                cnn.crossANumber(activePlayer, "red", cNumber_Tf.getText());
             }
             if (cYellow_Rbt.isSelected()) {
-
+                Connector cnn = new Connector();
+                cnn.crossANumber(activePlayer, "yel", cNumber_Tf.getText());
             }
             if (cGreen_Rbt.isSelected()) {
-
+                Connector cnn = new Connector();
+                cnn.crossANumber(activePlayer, "gre", cNumber_Tf.getText());
             }
             if (cBlue_Rbt.isSelected()) {
-
+                Connector cnn = new Connector();
+                cnn.crossANumber(activePlayer, "blu", cNumber_Tf.getText());
             }
             ArrayList<String> passivePlayer = process.getPassivePlayer();
             dispose();

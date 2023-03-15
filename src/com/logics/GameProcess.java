@@ -8,7 +8,7 @@ public class GameProcess {
     private ArrayList<String> passivePlayer = new ArrayList<String>();
     ArrayList<String> playerlist = new ArrayList<String>();
     private int countWindows;
-    public GameProcess(int playersCount){
+    public GameProcess(int playersCount){//, String[] playerNames){
         this.countWindows = 0;
         for (int i = 0; i < playersCount; i++) {
             String playerName = "p" + (i + 1);
@@ -54,7 +54,7 @@ public class GameProcess {
     public void nextRound(){
         int oldActivePlayerIndex = playerlist.indexOf(getActivePlayer());
         int newActivePlayerIndex = 0;
-        if (playerlist.size()>=(oldActivePlayerIndex+1)){
+        if (playerlist.size()>(oldActivePlayerIndex+1)){
             newActivePlayerIndex = oldActivePlayerIndex+1;
         }
 

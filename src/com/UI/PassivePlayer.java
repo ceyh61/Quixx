@@ -65,13 +65,19 @@ public class PassivePlayer extends JFrame implements ActionListener {
                     wBlue_Rbt.setEnabled(false);
                 }
             }
-
+Connector cnn = new Connector();
             public void windowClosed(WindowEvent e){
                 process.addCountWindows();
                 if (process.getCountWindows() == process.getPassivePlayer().size()){
                     process.resetCountWindows();
                     process.nextRound();
-                    new DicePage(process);
+
+                    if (cnn.checkGameEnd(process.getPlayerlist().size())){
+                        new Scoreboard();
+
+                    } else {
+                        new DicePage(process);
+                    }
                 }
             }
 

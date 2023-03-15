@@ -103,30 +103,30 @@ public class Calculations {
     // method gets the file/player name and calls for the penalty list from the Connector class
     // it calculates the penalties and returns it as an integer
     protected int calculatePenaltiesPoints(String fileName){
-        int points = 0;
+        int penalties = 0;
         ArrayList <String> penaltyList = new ArrayList<>();
         Connector cnn = new Connector();
         penaltyList = cnn.getPenaltyArray(fileName);
         for (int i = 0; i < penaltyList.size(); i++) {
             if(penaltyList.get(i).equalsIgnoreCase("Y")) {
-                points-= 5;
+                penalties++;
             }
         }
-        return points;
+        return penalties;
     }
 
-    public int calculateAllPointsOfPlayer(String fileName){
+    protected int calculateAllPointsOfPlayer(String fileName){
         int redPoints = calculateRedPoints(fileName);
         System.out.println(redPoints);
         int yellowPoints = calculateYellowPoints(fileName);
         int greenPoints = calculateGreenPoints(fileName);
         int bluePoints = calculateBluePoints(fileName);
-        int penaltyPoints = calculatePenaltiesPoints(fileName);
+        int penaltyPoints = (calculatePenaltiesPoints(fileName) * -5);
         int playersPoints = redPoints+yellowPoints+greenPoints+bluePoints+penaltyPoints;
 
         return playersPoints;
     }
-    public boolean checkIfAnyPlayerHasFourPenalties(int playersCount){
+    protected boolean checkIfAnyPlayerHasFourPenalties(int playersCount){
         boolean check = false;
         ArrayList <String> penaltyList = new ArrayList<>();
         int counter = 0;
@@ -149,7 +149,7 @@ public class Calculations {
 
         return check;
     }
-    public boolean checkIfTwoRowsAreDisabled(int playersCount){
+    protected boolean checkIfTwoRowsAreDisabled(int playersCount){
         boolean check = false;
         int counter = 0;
         for (int i = 0; i < playersCount; i++) {

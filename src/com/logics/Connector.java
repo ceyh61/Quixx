@@ -120,11 +120,7 @@ public class Connector {
         String answer = "";
         DiceDataRW dd = new DiceDataRW();
         String a = ""+ dd.readDiceFile();
-        // cuts the first and the last character from the String, which are the parantheses
-        String b = a.substring(1, a.length()-1);
-        // eleminates all the spaces from the String so there would be no problem in CSV file
-        answer = b.replaceAll("\\s", "");
-        return answer;
+        return a;
     }
 
     // This method gets the six generated random numbers and saves it into the diceRoll CSV file
@@ -164,6 +160,45 @@ public class Connector {
         PlayerDataRW pd = new PlayerDataRW();
         answer = pd.readOnlyOneLine(fileName, color);
         return answer;
+    }
+    //<p>Your PlayerCard: </p><br>
+    public String get_Player_Card_UI(String fileName) {
+        String[] colors = {"red", "yel", "gre", "blu"};
+        String a = "<html><body><h1 style='text-align:center;'>Your PlayerCard: </h1><br><p>";
+        PlayerDataRW pd = new PlayerDataRW();
+        for (int i = 0; i < colors.length; i++) {
+            String lineString = get_A_Line(fileName, colors[i]) + "";
+            lineString = lineString.substring(1, lineString.length()-7);
+            lineString+="</p><p>";
+            a += lineString + "<br>";
+        }
+a+="</p></body></html>";
+        // cuts the first and the last character from the String, which are the parantheses
+        //String b = a.substring(1, a.length()-1);
+        // eleminates all the spaces from the String so there would be no problem in CSV file
+        //String ret = a.replaceAll("\\s", "");
+
+        return a;
+    }
+
+    // This method adds a Penaltie to the players card
+    public void addPenaltie(String fileName) {
+        String[] colors = {"red", "yel", "gre", "blu"};
+        PlayerDataRW pd = new PlayerDataRW();
+        for (int i = 0; i < colors.length; i++) {
+            if (get_A_Number(fileName, colors[i], "P").equalsIgnoreCase("P")){
+                ArrayList <String> aL = new ArrayList<>();
+                aL = pd.readOnlyOneLine(fileName, colors[i]);
+                aL.set(12, "Y");
+                String a = ""+aL;
+                // cuts the first and the last character from the String, which are the parantheses
+                String b = a.substring(1, a.length()-1);
+                // eleminates all the spaces from the String so there would be no problem in CSV file
+                String newaL = b.replaceAll("\\s", "");
+                pd.saveChangesIntoPlayerFile(fileName, colors[i], "P", newaL);
+                break;
+            }
+        }
     }
 
     // This method checks if the given number is already crossed or not

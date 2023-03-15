@@ -50,11 +50,11 @@ public class DicePage extends JFrame implements ActionListener{
         title_Lb.setLocation(300, 20);
         //title_Lb.setBorder(new BevelBorder(BevelBorder.RAISED, Color.ORANGE, Color.ORANGE));
         c.add(title_Lb);
-
+        Connector cnn = new Connector();
         // creates a label for the number of penalties
-        penalty_Lb = new JLabel("1 penalty", SwingConstants.CENTER);
+        penalty_Lb = new JLabel(cnn.getPenaltyNumbers(process.getActivePlayer()) + " Penalties", SwingConstants.CENTER);
         penalty_Lb.setFont(new Font("Arial", Font.PLAIN, 18));
-        penalty_Lb.setSize(80, 30);
+        penalty_Lb.setSize(120, 30);
         penalty_Lb.setLocation(550, 60);
         penalty_Lb.setBorder(new BevelBorder(BevelBorder.RAISED, Color.ORANGE, Color.ORANGE));
         c.add(penalty_Lb);
