@@ -31,8 +31,10 @@ public class PassivePlayer extends JFrame implements ActionListener {
     private ButtonGroup wRadio_Bg;
     private JTextArea warning_Ta;
     private JButton continue_Bt;
+    private JButton exit_Bt;
     private String passivePlayer;
     private GameProcess process;
+    private int addierteZahl;
 
     public PassivePlayer(String passivePlayer, GameProcess process) {
         Connector cnn = new Connector();
@@ -40,7 +42,7 @@ public class PassivePlayer extends JFrame implements ActionListener {
         this.process = process;
         setTitle("Passive Player");
         setSize(800, 600);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
 
@@ -68,7 +70,7 @@ public class PassivePlayer extends JFrame implements ActionListener {
                     wBlue_Rbt.setEnabled(false);
                 }
             }
-Connector cnn = new Connector();
+            Connector cnn = new Connector();
             public void windowClosed(WindowEvent e){
                 process.addCountWindows();
                 if (process.getCountWindows() == process.getPassivePlayer().size()){
@@ -155,14 +157,24 @@ Connector cnn = new Connector();
         bDice_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(bDice_Lb);
 
-        penalty_Lb = new JLabel("Penalties: " + cnn.getPenaltyNumbers(passivePlayer));
+        penalty_Lb = new JLabel("Penalty: " + cnn.getPenaltyNumbers(passivePlayer));
         penalty_Lb.setFont(new Font("Arial", Font.BOLD, 18));
-        penalty_Lb.setBounds(575, 20, 150, 50);
+        penalty_Lb.setBounds(575, 20, 100, 50);
         penalty_Lb.setOpaque(true);
         penalty_Lb.setBackground(Color.black);
         penalty_Lb.setForeground(Color.white);
         penalty_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(penalty_Lb);
+
+        exit_Bt = new JButton("Exit");
+        exit_Bt.setFont(new Font("Arial", Font.BOLD, 18));
+        exit_Bt.setBounds(685, 20, 80, 50);
+        exit_Bt.setOpaque(true);
+        exit_Bt.setBackground(new Color(209,26,42));
+        exit_Bt.setForeground(Color.white);
+        exit_Bt.setFocusable(false);
+        exit_Bt.addActionListener(this);
+        c.add(exit_Bt);
 
         wCross_Lb = new JLabel("Cross with the help of the white dice:");
         wCross_Lb.setFont(new Font("Arial", Font.BOLD, 16));
@@ -221,7 +233,10 @@ Connector cnn = new Connector();
         wNumber_Lb.setForeground(Color.BLACK);
         c.add(wNumber_Lb);
 
-        wSumNumber_Lb = new JLabel("9");
+        int zahl1 = Integer.parseInt(ergebnis[0]);
+        int zahl2 = Integer.parseInt(ergebnis[1]);
+        addierteZahl = zahl1+zahl2;
+        wSumNumber_Lb = new JLabel("" + addierteZahl);
         wSumNumber_Lb.setFont(new Font("Arial", Font.BOLD, 14));
         wSumNumber_Lb.setBounds(715, 220, 50, 25);
         wSumNumber_Lb.setOpaque(true);
@@ -259,8 +274,59 @@ Connector cnn = new Connector();
     }
 
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == exit_Bt){
+            int choice = JOptionPane.showConfirmDialog
+                    (null, "Do you want to Exit from the Game?\n\nWarning: All data will be DELETED !",
+                            "Confirm", JOptionPane.YES_NO_OPTION);
+
+            if (choice == JOptionPane.YES_OPTION) {
+                // deletes evething before closing the program
+                Connector cnn = new Connector();
+                cnn.deleteEverything();
+                // closes the program
+                System.exit(0);
+            } else if (choice == JOptionPane.YES_OPTION){
+                // DO NOTHING!
+            }
+        }
         if (e.getSource() == continue_Bt){
-            dispose();
+                boolean end = true;
+                Connector cnn = new Connector();
+                if (wRed_Rbt.isSelected()) {
+                    if (cnn.checkNumberCross(passivePlayer, "red", "" + addierteZahl)) {
+                        cnn.crossANumber(passivePlayer, "red", "" + addierteZahl);
+                    } else{
+                        warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                        end = false;
+                    }
+                }
+                if (wYellow_Rbt.isSelected()) {
+                    if (cnn.checkNumberCross(passivePlayer, "yel", "" + addierteZahl)) {
+                        cnn.crossANumber(passivePlayer, "yel", "" + addierteZahl);
+                    } else {
+                        warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                        end = false;
+                    }
+                }
+                if (wGreen_Rbt.isSelected()) {
+                    if (cnn.checkNumberCross(passivePlayer, "gre", "" + addierteZahl)){
+                        cnn.crossANumber(passivePlayer, "gre", "" + addierteZahl);
+                    } else {
+                        warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                        end = false;
+                    }
+                }
+                if (wBlue_Rbt.isSelected()) {
+                    if (cnn.checkNumberCross(passivePlayer, "blu", "" + addierteZahl)){
+                        cnn.crossANumber(passivePlayer, "blu", "" + addierteZahl);
+                    } else {
+                        warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                        end = false;
+                    }
+                }
+                if(end){
+                    dispose();
+                }
             }
         }
     }
