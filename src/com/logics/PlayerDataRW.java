@@ -18,6 +18,8 @@ public class PlayerDataRW {
     
     private static final String COMMA_DELIMITER = ",";
     private static final String CROSSED_SYMBOL = "X";
+    private static final String PENALTY_SYMBOL = "P";
+    private static final String PENALTY_YES = "Y";
 
     private static final int LINE_RED_INDEX = 0;
     private static final int LINE_YEL_INDEX = 1;
@@ -261,8 +263,14 @@ public class PlayerDataRW {
         ArrayList <String> aL = new ArrayList<>();
         // gets the specified line from the player file
         aL = readOnlyOneLine(fileName, color);
-
-        aL.set(i, CROSSED_SYMBOL);
+        if (i <= 10) {
+            // for numbers only 
+            aL.set(i, CROSSED_SYMBOL);
+        }
+        if (i == 11 || i == 12) {
+            // for penalty only
+            aL.set(i, PENALTY_YES);
+        }
         String a = ""+aL;
         // cuts the first and the last character from the String, which are the parantheses
         String b = a.substring(1, a.length()-1);
@@ -285,6 +293,19 @@ public class PlayerDataRW {
             answer = saveChangesIntoPlayerFile(fileName, color, number, newLine);
         } else {
             answer = "Number is already Crossed!";
+        }
+        return answer;
+    }
+
+    protected String crossAPenaltyInBoard(String fileName, String color) {
+        String answer = "";
+        boolean b = checkIfPenaltyIsGiven(fileName, color);
+        String newLine = createALineWithCrossedNumber(fileName, color, PENALTY_SYMBOL);
+        // false means the penalty is not given yet.
+        if (b == false) {
+            answer = saveChangesIntoPlayerFile(fileName, color, PENALTY_SYMBOL, newLine);
+        } else {
+            answer = "Penalty is already given!";
         }
         return answer;
     }
@@ -353,6 +374,19 @@ public class PlayerDataRW {
         boolean b = false;
         String num = readOnlyOneNumber(fileName, color, number);
         if (num.equalsIgnoreCase("X") ) {
+            b = true;
+        }
+        return b;
+    }
+
+    // This method checks if the player has a penalty or not
+    // Input: file name, color
+    // Output:(true = penalty is given) 
+    protected boolean checkIfPenaltyIsGiven(String fileName, String color) {
+        boolean b = false;
+        // we write "P" in the number input for the penalty index
+        String num = readOnlyOneNumber(fileName, color, "P");
+        if (num.equalsIgnoreCase("Y") ) {
             b = true;
         }
         return b;
