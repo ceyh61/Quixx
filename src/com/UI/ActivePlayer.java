@@ -1,7 +1,6 @@
 package com.UI;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 
 import com.logics.Connector;
 import com.logics.GameProcess;
