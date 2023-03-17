@@ -284,6 +284,14 @@ public class Connector {
         return answer;
     }
 
+    // This method gets the player name and color and then it crosses the Lock box
+    public String crossALock(String fileName, String color) {
+        String answer = "";
+        PlayerDataRW pd = new PlayerDataRW();
+        answer = pd.crossALockInBoard(fileName, color);
+        return answer;
+    }
+
     // This method gives an ArrayList of last elements of each row from player file
     // these elements are used to calculate the number of penalties
     public ArrayList<String> getPenaltyArray(String fileName) {
