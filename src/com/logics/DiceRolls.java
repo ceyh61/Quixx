@@ -3,13 +3,6 @@ package com.logics;
 import java.util.ArrayList;
 
 public class DiceRolls {
-
-    private static final int DICE_WH1 = 0;
-    private static final int DICE_WH2 = 1;
-    private static final int DICE_RED = 2;
-    private static final int DICE_YEL = 3;
-    private static final int DICE_GRE = 4;
-    private static final int DICE_BLU = 5;
     
     private static final int NUMBER_OF_DICES = 6;
     private ArrayList<Integer> diceList = new ArrayList<>();

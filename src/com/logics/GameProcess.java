@@ -1,7 +1,6 @@
 package com.logics;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class GameProcess {
     private String activePlayer;

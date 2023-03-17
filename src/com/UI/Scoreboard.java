@@ -16,6 +16,8 @@ public class Scoreboard extends JFrame implements ActionListener {
 
     public Scoreboard() {
 
+        boolean b = false;
+
         setTitle("Scoreboard");
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -54,7 +56,7 @@ public class Scoreboard extends JFrame implements ActionListener {
         p2Score_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(p2Score_Lb);
 
-        if(false) {
+        if(b) {
 
             p3Score_Lb = new JLabel("Player3: X");
             p3Score_Lb.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -67,7 +69,7 @@ public class Scoreboard extends JFrame implements ActionListener {
 
         }
 
-        if(false) {
+        if(b) {
 
             p4Score_Lb = new JLabel("Player4: X");
             p4Score_Lb.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -80,7 +82,7 @@ public class Scoreboard extends JFrame implements ActionListener {
 
         }
 
-        if(false) {
+        if(b) {
 
             p5Score_Lb = new JLabel("Player5: X");
             p5Score_Lb.setFont(new Font("Arial", Font.PLAIN, 16));
