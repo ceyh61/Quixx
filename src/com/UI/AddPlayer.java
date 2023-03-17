@@ -114,12 +114,13 @@ public class AddPlayer extends JFrame implements ActionListener{
         
         // according to the number of players it displays the name input
         switch (numberPlayers) {
-
+            // creates only 2 label and input boxes
             case (2):   c.add(p1_Lb);
                         c.add(p2_Lb);
                         c.add(p1_Tf);
                         c.add(p2_Tf);
-                break;    
+                break;   
+            // creates only 3 label and input boxes 
             case (3):   c.add(p1_Lb);
                         c.add(p2_Lb);
                         c.add(p3_Lb);
@@ -127,6 +128,7 @@ public class AddPlayer extends JFrame implements ActionListener{
                         c.add(p2_Tf);
                         c.add(p3_Tf);
                 break;
+            // creates 4 label and input boxes    
             case (4):   c.add(p1_Lb);
                         c.add(p2_Lb);
                         c.add(p3_Lb);
@@ -136,6 +138,7 @@ public class AddPlayer extends JFrame implements ActionListener{
                         c.add(p3_Tf);
                         c.add(p4_Tf);
                 break;
+            // creates label and input boxes for may amount of players    
             case (5):   c.add(p1_Lb);
                         c.add(p2_Lb);
                         c.add(p3_Lb);
