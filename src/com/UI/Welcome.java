@@ -27,7 +27,7 @@ public class Welcome extends JFrame implements ActionListener{
         //setLayout(new FlowLayout());
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setResizable(false);
-        setVisible(true);
+        setLocationRelativeTo(null);
 
         c = getContentPane();
         c.setLayout(null);
@@ -98,6 +98,8 @@ public class Welcome extends JFrame implements ActionListener{
         exit_Bt.setFocusable(false);
         exit_Bt.addActionListener(this);
         c.add(exit_Bt);
+
+        setVisible(true);
     }
 
     @Override

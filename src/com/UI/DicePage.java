@@ -38,7 +38,7 @@ public class DicePage extends JFrame implements ActionListener{
         setBounds(300, 100, 700, 420);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setResizable(false);
-
+        setLocationRelativeTo(null);
 
         c = getContentPane();
         c.setLayout(null);
@@ -173,9 +173,8 @@ public class DicePage extends JFrame implements ActionListener{
         continue_Bt.addActionListener(this);
         continue_Bt.setEnabled(false);
         c.add(continue_Bt);
+
         setVisible(true);
-
-
     }
 
 
