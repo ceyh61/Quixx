@@ -110,19 +110,19 @@ public class Welcome extends JFrame implements ActionListener{
                 int numberPlayers = 0;
                 Connector cnn = new Connector();
                 if (p2_RBt.isSelected()) {
-                    cnn.createPlayerFiles(2);
+                    cnn.createEverything(2);
                     numberPlayers = 2;
                 }
                 if (p3_RBt.isSelected()) {
-                    cnn.createPlayerFiles(3);
+                    cnn.createEverything(3);
                     numberPlayers = 3;
                 }
                 if (p4_RBt.isSelected()) {
-                    cnn.createPlayerFiles(4);
+                    cnn.createEverything(4);
                     numberPlayers = 4;
                 }
                 if (p5_RBt.isSelected()) {
-                    cnn.createPlayerFiles(5);
+                    cnn.createEverything(5);
                     numberPlayers = 5;
                 }
                 new AddPlayer(numberPlayers);
@@ -135,6 +135,8 @@ public class Welcome extends JFrame implements ActionListener{
 
         else if(e.getSource() == exit_Bt){
             // closes the program
+            Connector cnn = new Connector();
+            cnn.deleteEverything();
             System.exit(0);
         }
     }
