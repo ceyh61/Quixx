@@ -55,8 +55,8 @@ public class Connector {
 
     // This method gets the number of players and create CSV files for each player
     public void createEverything(int numberOfPlayers) {
-        createPlayerFiles(numberOfPlayers);
         createPathFiles(numberOfPlayers);
+        createPlayerFiles(numberOfPlayers);
     }
 
     //------------------------------------------------------------

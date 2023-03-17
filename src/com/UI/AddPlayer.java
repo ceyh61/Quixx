@@ -56,71 +56,99 @@ public class AddPlayer extends JFrame implements ActionListener{
         p1_Lb.setFont(new Font("Arial", Font.PLAIN, 18));
         p1_Lb.setSize(120, 25);
         p1_Lb.setLocation(60, 120);
-        c.add(p1_Lb);
 
         // creates a label for the input box of first user
         p2_Lb = new JLabel("Player 2");
         p2_Lb.setFont(new Font("Arial", Font.PLAIN, 18));
         p2_Lb.setSize(120, 25);
         p2_Lb.setLocation(60, 150);
-        c.add(p2_Lb);
 
         // creates a label for the input box of first user
         p3_Lb = new JLabel("Player 3");
         p3_Lb.setFont(new Font("Arial", Font.PLAIN, 18));
         p3_Lb.setSize(120, 25);
         p3_Lb.setLocation(60, 180);
-        c.add(p3_Lb);
 
         // creates a label for the input box of first user
         p4_Lb = new JLabel("Player 4");
         p4_Lb.setFont(new Font("Arial", Font.PLAIN, 18));
         p4_Lb.setSize(120, 25);
         p4_Lb.setLocation(60, 210);
-        c.add(p4_Lb);
 
         // creates a label for the input box of first user
         p5_Lb = new JLabel("Player 5");
         p5_Lb.setFont(new Font("Arial", Font.PLAIN, 18));
         p5_Lb.setSize(120, 25);
         p5_Lb.setLocation(60, 240);
-        c.add(p5_Lb);
 
         // creates a field for first user to enter the name
         p1_Tf = new JTextField();
         p1_Tf.setFont(new Font("Arial", Font.PLAIN, 15));
         p1_Tf.setSize(190, 20);
         p1_Tf.setLocation(160, 120);
-        c.add(p1_Tf);
 
         // creates a field for first user to enter the name
         p2_Tf = new JTextField();
         p2_Tf.setFont(new Font("Arial", Font.PLAIN, 15));
         p2_Tf.setSize(190, 20);
         p2_Tf.setLocation(160, 150);
-        c.add(p2_Tf);
 
-                        // creates a field for first user to enter the name
+        // creates a field for first user to enter the name
         p3_Tf = new JTextField();
         p3_Tf.setFont(new Font("Arial", Font.PLAIN, 15));
         p3_Tf.setSize(190, 20);
         p3_Tf.setLocation(160, 180);
-        c.add(p3_Tf);
 
         // creates a field for first user to enter the name
         p4_Tf = new JTextField();
         p4_Tf.setFont(new Font("Arial", Font.PLAIN, 15));
         p4_Tf.setSize(190, 20);
         p4_Tf.setLocation(160, 210);
-        c.add(p4_Tf);
 
         // creates a field for first user to enter the name
         p5_Tf = new JTextField();
         p5_Tf.setFont(new Font("Arial", Font.PLAIN, 15));
         p5_Tf.setSize(190, 20);
         p5_Tf.setLocation(160, 240);
-        c.add(p5_Tf);
         
+        // according to the number of players it displays the name input
+        switch (numberPlayers) {
+
+            case (2):   c.add(p1_Lb);
+                        c.add(p2_Lb);
+                        c.add(p1_Tf);
+                        c.add(p2_Tf);
+                break;    
+            case (3):   c.add(p1_Lb);
+                        c.add(p2_Lb);
+                        c.add(p3_Lb);
+                        c.add(p1_Tf);
+                        c.add(p2_Tf);
+                        c.add(p3_Tf);
+                break;
+            case (4):   c.add(p1_Lb);
+                        c.add(p2_Lb);
+                        c.add(p3_Lb);
+                        c.add(p4_Lb);
+                        c.add(p1_Tf);
+                        c.add(p2_Tf);
+                        c.add(p3_Tf);
+                        c.add(p4_Tf);
+                break;
+            case (5):   c.add(p1_Lb);
+                        c.add(p2_Lb);
+                        c.add(p3_Lb);
+                        c.add(p4_Lb);
+                        c.add(p5_Lb);
+                        c.add(p1_Tf);
+                        c.add(p2_Tf);
+                        c.add(p3_Tf);
+                        c.add(p4_Tf);
+                        c.add(p5_Tf);
+                break;
+            default:
+                break;
+        }
 
         // creates a button for starting and then initializing the addPlayer panel
         continue_Bt = new JButton("Continue");
@@ -151,6 +179,7 @@ public class AddPlayer extends JFrame implements ActionListener{
             Connector cnn = new Connector();
             String msg = "";
 
+            // gets the input (player Names) as String/text
             String p1_Name = p1_Tf.getText();
             String p2_Name = p2_Tf.getText();
             String p3_Name = p3_Tf.getText();
