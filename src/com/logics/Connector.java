@@ -203,7 +203,7 @@ public class Connector {
     }
 
     // This method adds a Penaltie to the players card
-    public void addPenaltie(String fileName) {
+    public void addPenalty(String fileName) {
         String[] colors = {"red", "yel", "gre", "blu"};
         PlayerDataRW pd = new PlayerDataRW();
         for (int i = 0; i < colors.length; i++) {
@@ -260,7 +260,7 @@ public class Connector {
                 crosses++;
             }
         }
-        System.out.println(crosses);
+        //System.out.println(crosses);
         if ((color == colors[0] || color == colors[1]) && number.equals("12")) {
             if (crosses<5){
                 b = false;

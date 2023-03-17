@@ -40,11 +40,12 @@ public class ActivePlayer extends JFrame implements ActionListener {
     private ButtonGroup cRadio_Bg;
     private JTextField cNumber_Tf;
     private JTextArea warning_Ta;
-    private JButton continue_Bt;
+    private JButton continue01_Bt;
+    private JButton continue02_Bt;
     private JButton exit_Bt;
     private GameProcess process;
     private String activePlayer;
-    private int addierteZahl;
+    private int sumWhiteDice;
 
 
     public ActivePlayer(GameProcess process) {
@@ -238,8 +239,8 @@ public class ActivePlayer extends JFrame implements ActionListener {
 
         int zahl1 = Integer.parseInt(result[0]);
         int zahl2 = Integer.parseInt(result[1]);
-        addierteZahl = zahl1+zahl2;
-        wSumNumber_Lb = new JLabel("" + addierteZahl);
+        sumWhiteDice = zahl1+zahl2;
+        wSumNumber_Lb = new JLabel("" + sumWhiteDice);
         wSumNumber_Lb.setFont(new Font("Arial", Font.BOLD, 14));
         wSumNumber_Lb.setBounds(715, 220, 50, 25);
         wSumNumber_Lb.setOpaque(true);
@@ -334,15 +335,26 @@ public class ActivePlayer extends JFrame implements ActionListener {
         warning_Ta.setEditable(false);
         c.add(warning_Ta);
 
-        continue_Bt = new JButton("Continue");
-        continue_Bt.setFont(new Font("Arial", Font.BOLD, 18));
-        continue_Bt.setBounds(450, 450, 315, 100);
-        continue_Bt.setOpaque(true);
-        continue_Bt.setBackground(new Color(30, 70, 125));
-        continue_Bt.setForeground(Color.white);
-        continue_Bt.setFocusable(false);
-        continue_Bt.addActionListener(this);
-        c.add(continue_Bt);
+        continue01_Bt = new JButton("Continue1");
+        continue01_Bt.setFont(new Font("Arial", Font.BOLD, 18));
+        continue01_Bt.setBounds(450, 450, 150, 100);
+        continue01_Bt.setOpaque(true);
+        continue01_Bt.setBackground(new Color(30, 70, 125));
+        continue01_Bt.setForeground(Color.white);
+        continue01_Bt.setFocusable(false);
+        continue01_Bt.addActionListener(this);
+        c.add(continue01_Bt);
+
+        continue02_Bt = new JButton("Continue2");
+        continue02_Bt.setFont(new Font("Arial", Font.BOLD, 18));
+        continue02_Bt.setBounds(600, 450, 150, 100);
+        continue02_Bt.setOpaque(true);
+        continue02_Bt.setBackground(new Color(30, 70, 125));
+        continue02_Bt.setForeground(Color.white);
+        continue02_Bt.setFocusable(false);
+        continue02_Bt.addActionListener(this);
+        continue02_Bt.setEnabled(false);
+        c.add(continue02_Bt);
 
         setVisible(true);
 
@@ -356,6 +368,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
             cNumber_Tf.setEnabled(true);
             cNumber_Lb.setEnabled(true);
         }
+        // Give the option to leave the Game 
         if(e.getSource() == exit_Bt){
             int choice = JOptionPane.showConfirmDialog
                     (null, "Do you want to Exit from the Game?\n\nWarning: All data will be DELETED !",
@@ -371,45 +384,55 @@ public class ActivePlayer extends JFrame implements ActionListener {
                 // DO NOTHING!
             }
         }
-        if(e.getSource() == continue_Bt) {
-            boolean end = true;
-            Connector cnn = new Connector();
+
+        boolean end = true;
+        Connector cnn = new Connector();
+        // takes the first chosen numbers and crosses it
+        if(e.getSource() == continue01_Bt) {
+            
             if (wNothing_Rbt.isSelected() && cNothing_Rbt.isSelected()) {
                 //Do Penalty for this Player
-                cnn.addPenaltie(activePlayer);
+                cnn.addPenalty(activePlayer);
             }
             if (wRed_Rbt.isSelected()) {
-                if (cnn.checkNumberCross(activePlayer, "red", "" + addierteZahl)) {
-                    cnn.crossANumber(activePlayer, "red", "" + addierteZahl);
+                if (cnn.checkNumberCross(activePlayer, "red", "" + sumWhiteDice)) {
+                    cnn.crossANumber(activePlayer, "red", "" + sumWhiteDice);
                 } else{
                     warning_Ta.setText("Zahl kann nicht gestrichen werden!");
                     end = false;
                 }
             }
             if (wYellow_Rbt.isSelected()) {
-                if (cnn.checkNumberCross(activePlayer, "yel", "" + addierteZahl)) {
-                    cnn.crossANumber(activePlayer, "yel", "" + addierteZahl);
+                if (cnn.checkNumberCross(activePlayer, "yel", "" + sumWhiteDice)) {
+                    cnn.crossANumber(activePlayer, "yel", "" + sumWhiteDice);
                 } else {
                     warning_Ta.setText("Zahl kann nicht gestrichen werden!");
                     end = false;
                 }
             }
             if (wGreen_Rbt.isSelected()) {
-                if (cnn.checkNumberCross(activePlayer, "gre", "" + addierteZahl)){
-                    cnn.crossANumber(activePlayer, "gre", "" + addierteZahl);
+                if (cnn.checkNumberCross(activePlayer, "gre", "" + sumWhiteDice)){
+                    cnn.crossANumber(activePlayer, "gre", "" + sumWhiteDice);
                 } else {
                     warning_Ta.setText("Zahl kann nicht gestrichen werden!");
                     end = false;
                 }
             }
             if (wBlue_Rbt.isSelected()) {
-                if (cnn.checkNumberCross(activePlayer, "blu", "" + addierteZahl)){
-                    cnn.crossANumber(activePlayer, "blu", "" + addierteZahl);
+                if (cnn.checkNumberCross(activePlayer, "blu", "" + sumWhiteDice)){
+                    cnn.crossANumber(activePlayer, "blu", "" + sumWhiteDice);
                 } else {
                     warning_Ta.setText("Zahl kann nicht gestrichen werden!");
                     end = false;
                 }
             }
+            if (end == true) {
+                continue02_Bt.setEnabled(true);
+                continue01_Bt.setEnabled(false);
+            }
+        }
+
+        if(e.getSource() == continue02_Bt) {
 
             if (cRed_Rbt.isSelected()) {
                 if (cnn.checkColoredNumberCross("red", cNumber_Tf.getText()) && cnn.checkNumberCross(activePlayer, "red", cNumber_Tf.getText())){
@@ -428,6 +451,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
                     end = false;
                 }
             }
+
             if (cGreen_Rbt.isSelected()) {
                 if (cnn.checkColoredNumberCross("gre", cNumber_Tf.getText()) && cnn.checkNumberCross(activePlayer, "gre", cNumber_Tf.getText())){
                     cnn.crossANumber(activePlayer, "gre", "" + cNumber_Tf.getText());
@@ -436,6 +460,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
                     end = false;
                 }
             }
+
             if (cBlue_Rbt.isSelected()) {
                 if (cnn.checkColoredNumberCross("blu", cNumber_Tf.getText()) && cnn.checkNumberCross(activePlayer, "blu", cNumber_Tf.getText())){
                     cnn.crossANumber(activePlayer, "blu", "" + cNumber_Tf.getText());
