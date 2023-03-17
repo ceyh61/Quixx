@@ -45,10 +45,9 @@ public class GameProcess {
         }
         return answer; 
     }
-
-    public String getPassivePlayerName(){
+    public String getPassivePlayerName(String playerName){
         String answer = "";
-        String p = getActivePlayer();
+        String p = playerName;
         if (p.equalsIgnoreCase("p1")) {
             answer = getPlayerNames().get(0);
         }

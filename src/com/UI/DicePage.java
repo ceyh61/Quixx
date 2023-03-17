@@ -43,6 +43,7 @@ public class DicePage extends JFrame implements ActionListener{
         c = getContentPane();
         c.setLayout(null);
 
+
         // creates the title for the welcome panel
         title_Lb = new JLabel("QUIXX", SwingConstants.CENTER);
         title_Lb.setFont(new Font("Arial", Font.BOLD, 20));
