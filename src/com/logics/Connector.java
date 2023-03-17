@@ -316,10 +316,16 @@ public class Connector {
         }
         return end;
     }
-
     public boolean isRedRowComplete() {
-        boolean b = false;
-        return b;
+        boolean check = false;
+        int playerNumber = getNumberOfPlayers();
+        for (int i = 0;i<playerNumber;i++){
+            ArrayList<String> redRow = get_A_Line("p" + (i+1),"red");
+            if (redRow.get(11).contains("X")){
+                check = true;
+            }
+        }
+        return check;
     }
     public boolean isYellowRowComplete() {
         boolean b = false;
