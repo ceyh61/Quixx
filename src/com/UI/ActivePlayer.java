@@ -398,7 +398,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
                 if (cnn.checkNumberCross(activePlayer, "red", "" + sumWhiteDice)) {
                     cnn.crossANumber(activePlayer, "red", "" + sumWhiteDice);
                 } else{
-                    warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                    warning_Ta.setText("Number cannot be crossed with the white dice like this!");
                     end = false;
                 }
             }
@@ -406,7 +406,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
                 if (cnn.checkNumberCross(activePlayer, "yel", "" + sumWhiteDice)) {
                     cnn.crossANumber(activePlayer, "yel", "" + sumWhiteDice);
                 } else {
-                    warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                    warning_Ta.setText("Number cannot be crossed with the white dice like this!");
                     end = false;
                 }
             }
@@ -414,7 +414,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
                 if (cnn.checkNumberCross(activePlayer, "gre", "" + sumWhiteDice)){
                     cnn.crossANumber(activePlayer, "gre", "" + sumWhiteDice);
                 } else {
-                    warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                    warning_Ta.setText("Number cannot be crossed with the white dice like this!");
                     end = false;
                 }
             }
@@ -422,7 +422,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
                 if (cnn.checkNumberCross(activePlayer, "blu", "" + sumWhiteDice)){
                     cnn.crossANumber(activePlayer, "blu", "" + sumWhiteDice);
                 } else {
-                    warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                    warning_Ta.setText("Number cannot be crossed with the white dice like this!");
                     end = false;
                 }
             }
@@ -438,7 +438,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
                 if (cnn.checkColoredNumberCross("red", cNumber_Tf.getText()) && cnn.checkNumberCross(activePlayer, "red", cNumber_Tf.getText())){
                     cnn.crossANumber(activePlayer, "red", "" + cNumber_Tf.getText());
                 } else {
-                    warning_Ta.setText("Eingegebene Zahl überprüfen!");
+                    warning_Ta.setText("Number cannot be crossed with the colored dice like this!");
                     end = false;
                 }
             }
@@ -447,7 +447,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
                 if (cnn.checkColoredNumberCross("yel", cNumber_Tf.getText()) && cnn.checkNumberCross(activePlayer, "yel", cNumber_Tf.getText())){
                     cnn.crossANumber(activePlayer, "yel", "" + cNumber_Tf.getText());
                 } else {
-                    warning_Ta.setText("Eingegebene Zahl überprüfen!");
+                    warning_Ta.setText("Number cannot be crossed with the colored dice like this!");
                     end = false;
                 }
             }
@@ -456,7 +456,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
                 if (cnn.checkColoredNumberCross("gre", cNumber_Tf.getText()) && cnn.checkNumberCross(activePlayer, "gre", cNumber_Tf.getText())){
                     cnn.crossANumber(activePlayer, "gre", "" + cNumber_Tf.getText());
                 } else {
-                    warning_Ta.setText("Eingegebene Zahl überprüfen!");
+                    warning_Ta.setText("Number cannot be crossed with the colored dice like this!");
                     end = false;
                 }
             }
@@ -465,7 +465,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
                 if (cnn.checkColoredNumberCross("blu", cNumber_Tf.getText()) && cnn.checkNumberCross(activePlayer, "blu", cNumber_Tf.getText())){
                     cnn.crossANumber(activePlayer, "blu", "" + cNumber_Tf.getText());
                 } else {
-                    warning_Ta.setText("Eingegebene Zahl überprüfen!");
+                    warning_Ta.setText("Number cannot be crossed with the colored dice like this!");
                     end = false;
                 }
             }

@@ -296,7 +296,7 @@ public class PassivePlayer extends JFrame implements ActionListener {
                     if (cnn.checkNumberCross(passivePlayer, "red", "" + addierteZahl)) {
                         cnn.crossANumber(passivePlayer, "red", "" + addierteZahl);
                     } else{
-                        warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                        warning_Ta.setText("Number cannot be crossed with the white dice like this!");
                         end = false;
                     }
                 }
@@ -304,7 +304,7 @@ public class PassivePlayer extends JFrame implements ActionListener {
                     if (cnn.checkNumberCross(passivePlayer, "yel", "" + addierteZahl)) {
                         cnn.crossANumber(passivePlayer, "yel", "" + addierteZahl);
                     } else {
-                        warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                        warning_Ta.setText("Number cannot be crossed with the white dice like this!");
                         end = false;
                     }
                 }
@@ -312,7 +312,7 @@ public class PassivePlayer extends JFrame implements ActionListener {
                     if (cnn.checkNumberCross(passivePlayer, "gre", "" + addierteZahl)){
                         cnn.crossANumber(passivePlayer, "gre", "" + addierteZahl);
                     } else {
-                        warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                        warning_Ta.setText("Number cannot be crossed with the white dice like this!");
                         end = false;
                     }
                 }
@@ -320,7 +320,7 @@ public class PassivePlayer extends JFrame implements ActionListener {
                     if (cnn.checkNumberCross(passivePlayer, "blu", "" + addierteZahl)){
                         cnn.crossANumber(passivePlayer, "blu", "" + addierteZahl);
                     } else {
-                        warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                        warning_Ta.setText("Number cannot be crossed with the white dice like this!");
                         end = false;
                     }
                 }

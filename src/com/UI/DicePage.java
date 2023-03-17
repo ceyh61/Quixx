@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
 
 import com.logics.Connector;
 import com.logics.GameProcess;
@@ -42,6 +43,7 @@ public class DicePage extends JFrame implements ActionListener{
 
         c = getContentPane();
         c.setLayout(null);
+        c.setBackground(Color.lightGray);
 
         // creates the title for the welcome panel
         title_Lb = new JLabel("QUIXX", SwingConstants.CENTER);
@@ -51,55 +53,60 @@ public class DicePage extends JFrame implements ActionListener{
         //title_Lb.setBorder(new BevelBorder(BevelBorder.RAISED, Color.ORANGE, Color.ORANGE));
         c.add(title_Lb);
         Connector cnn = new Connector();
-        // creates a label for the number of penalties
-        penalty_Lb = new JLabel(cnn.getPenaltyNumbers(process.getActivePlayer()) + " Penalties", SwingConstants.CENTER);
-        penalty_Lb.setFont(new Font("Arial", Font.PLAIN, 18));
-        penalty_Lb.setSize(120, 30);
-        penalty_Lb.setLocation(550, 60);
-        penalty_Lb.setBorder(new BevelBorder(BevelBorder.RAISED, Color.ORANGE, Color.ORANGE));
-        c.add(penalty_Lb);
 
         // creates a label for the name of the first user
         p1_Name_Lb = new JLabel(process.getActivePlayerName(), SwingConstants.CENTER);
         p1_Name_Lb.setFont(new Font("Arial", Font.PLAIN, 18));
-        p1_Name_Lb.setSize(80, 30);
-        p1_Name_Lb.setLocation(50, 60);
-        p1_Name_Lb.setBorder(new BevelBorder(BevelBorder.RAISED, Color.black, Color.black));
+        p1_Name_Lb.setSize(110, 60);
+        p1_Name_Lb.setLocation(30, 60);
+        LineBorder border = new LineBorder(Color.YELLOW, 4);
+        p1_Name_Lb.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        p1_Name_Lb.setOpaque(true);
+        p1_Name_Lb.setBackground(new Color(30, 70, 125));
+        p1_Name_Lb.setForeground(Color.WHITE);
         c.add(p1_Name_Lb);
 
         // creates a label for the name of the second user
         p2_Name_Lb = new JLabel(process.getPassivePlayerName(process.getPassivePlayer().get(0)), SwingConstants.CENTER);
         p2_Name_Lb.setFont(new Font("Arial", Font.PLAIN, 18));
-        p2_Name_Lb.setSize(80, 30);
-        p2_Name_Lb.setLocation(140, 60);
-        p2_Name_Lb.setBorder(new BevelBorder(BevelBorder.RAISED, Color.black, Color.black));
+        p2_Name_Lb.setSize(110, 60);
+        p2_Name_Lb.setLocation(155, 60);
+        p2_Name_Lb.setOpaque(true);
+        p2_Name_Lb.setBackground(new Color(30, 70, 125));
+        p2_Name_Lb.setForeground(Color.WHITE);
         c.add(p2_Name_Lb);
 
         if (playerNumber >=3) {
             // creates a label for the name of the third user
             p3_Name_Lb = new JLabel(process.getPassivePlayerName(process.getPassivePlayer().get(1)), SwingConstants.CENTER);
             p3_Name_Lb.setFont(new Font("Arial", Font.PLAIN, 18));
-            p3_Name_Lb.setSize(80, 30);
-            p3_Name_Lb.setLocation(230, 60);
-            p3_Name_Lb.setBorder(new BevelBorder(BevelBorder.RAISED, Color.black, Color.black));
+            p3_Name_Lb.setSize(110, 60);
+            p3_Name_Lb.setLocation(280, 60);
+            p3_Name_Lb.setOpaque(true);
+            p3_Name_Lb.setBackground(new Color(30, 70, 125));
+            p3_Name_Lb.setForeground(Color.WHITE);
             c.add(p3_Name_Lb);
         }
         if(playerNumber >=4) {
             // creates a label for the name of the fourth user
             p4_Name_Lb = new JLabel(process.getPassivePlayerName(process.getPassivePlayer().get(2)), SwingConstants.CENTER);
             p4_Name_Lb.setFont(new Font("Arial", Font.PLAIN, 18));
-            p4_Name_Lb.setSize(80, 30);
-            p4_Name_Lb.setLocation(320, 60);
-            p4_Name_Lb.setBorder(new BevelBorder(BevelBorder.RAISED, Color.black, Color.black));
+            p4_Name_Lb.setSize(110, 60);
+            p4_Name_Lb.setLocation(405, 60);
+            p4_Name_Lb.setOpaque(true);
+            p4_Name_Lb.setBackground(new Color(30, 70, 125));
+            p4_Name_Lb.setForeground(Color.WHITE);
             c.add(p4_Name_Lb);
         }
         if(playerNumber == 5) {
             // creates a label for the name of the fifth user
             p5_Name_Lb = new JLabel(process.getPassivePlayerName(process.getPassivePlayer().get(3)), SwingConstants.CENTER);
             p5_Name_Lb.setFont(new Font("Arial", Font.PLAIN, 18));
-            p5_Name_Lb.setSize(80, 30);
-            p5_Name_Lb.setLocation(410, 60);
-            p5_Name_Lb.setBorder(new BevelBorder(BevelBorder.RAISED, Color.black, Color.black));
+            p5_Name_Lb.setSize(110, 60);
+            p5_Name_Lb.setLocation(530, 60);
+            p5_Name_Lb.setOpaque(true);
+            p5_Name_Lb.setBackground(new Color(30, 70, 125));
+            p5_Name_Lb.setForeground(Color.WHITE);
             c.add(p5_Name_Lb);
         }
         // creates a label for the name of the first white dice
@@ -107,7 +114,9 @@ public class DicePage extends JFrame implements ActionListener{
         whiteDice1_LB.setFont(new Font("Arial", Font.PLAIN, 18));
         whiteDice1_LB.setSize(50, 50);
         whiteDice1_LB.setLocation(100, 150);
-        whiteDice1_LB.setBorder(new BevelBorder(BevelBorder.RAISED, Color.black, Color.black));
+        whiteDice1_LB.setOpaque(true);
+        whiteDice1_LB.setBackground(Color.white);
+
         c.add(whiteDice1_LB);
 
         // creates a label for the name of the second white dice
@@ -115,7 +124,8 @@ public class DicePage extends JFrame implements ActionListener{
         whiteDice2_LB.setFont(new Font("Arial", Font.PLAIN, 18));
         whiteDice2_LB.setSize(50, 50);
         whiteDice2_LB.setLocation(180, 150);
-        whiteDice2_LB.setBorder(new BevelBorder(BevelBorder.RAISED, Color.black, Color.black));
+        whiteDice2_LB.setOpaque(true);
+        whiteDice2_LB.setBackground(Color.white);
         c.add(whiteDice2_LB);
 
         // creates a label for the name of the first white dice
@@ -123,7 +133,9 @@ public class DicePage extends JFrame implements ActionListener{
         redDice_LB.setFont(new Font("Arial", Font.PLAIN, 18));
         redDice_LB.setSize(50, 50);
         redDice_LB.setLocation(260, 150);
-        redDice_LB.setBorder(new BevelBorder(BevelBorder.RAISED, Color.red, Color.RED));
+        redDice_LB.setOpaque(true);
+        redDice_LB.setBackground(Color.red);
+        redDice_LB.setForeground(Color.BLACK);
         c.add(redDice_LB);
 
         // creates a label for the name of the first white dice
@@ -131,7 +143,9 @@ public class DicePage extends JFrame implements ActionListener{
         yellowDice_LB.setFont(new Font("Arial", Font.PLAIN, 18));
         yellowDice_LB.setSize(50, 50);
         yellowDice_LB.setLocation(340, 150);
-        yellowDice_LB.setBorder(new BevelBorder(BevelBorder.RAISED, Color.yellow, Color.yellow));
+        yellowDice_LB.setOpaque(true);
+        yellowDice_LB.setBackground(Color.yellow);
+        yellowDice_LB.setForeground(Color.BLACK);
         c.add(yellowDice_LB);
 
         // creates a label for the name of the first white dice
@@ -139,7 +153,9 @@ public class DicePage extends JFrame implements ActionListener{
         greenDice_LB.setFont(new Font("Arial", Font.PLAIN, 18));
         greenDice_LB.setSize(50, 50);
         greenDice_LB.setLocation(420, 150);
-        greenDice_LB.setBorder(new BevelBorder(BevelBorder.RAISED, Color.green, Color.green));
+        greenDice_LB.setOpaque(true);
+        greenDice_LB.setBackground(new Color(0,128,0));
+        greenDice_LB.setForeground(Color.BLACK);
         c.add(greenDice_LB);
 
         // creates a label for the name of the first white dice
@@ -147,7 +163,9 @@ public class DicePage extends JFrame implements ActionListener{
         blueDice_LB.setFont(new Font("Arial", Font.PLAIN, 18));
         blueDice_LB.setSize(50, 50);
         blueDice_LB.setLocation(500, 150);
-        blueDice_LB.setBorder(new BevelBorder(BevelBorder.RAISED, Color.blue, Color.blue));
+        blueDice_LB.setOpaque(true);
+        blueDice_LB.setBackground(Color.BLUE);
+        blueDice_LB.setForeground(Color.BLACK);
         c.add(blueDice_LB);
         
         // creates a button for starting and then initializing the addPlayer panel
