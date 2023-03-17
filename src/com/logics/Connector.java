@@ -53,6 +53,12 @@ public class Connector {
         gDB.deleteOnePlayerFile(deletePath);
     }
 
+    // This method gets the number of players and create CSV files for each player
+    public void createEverything(int numberOfPlayers) {
+        createPlayerFiles(numberOfPlayers);
+        createPathFiles(numberOfPlayers);
+    }
+
     //------------------------------------------------------------
     //---2.---------------Pathfinder methods----------------------
     //------------------------------------------------------------
@@ -82,6 +88,15 @@ public class Connector {
         Pathfinder pf = new Pathfinder();
         answer = pf.getLastSavedFilePath(fileName);
         return answer;
+    }
+
+    // This method deletes all the files in every folder that belong to the program
+    public void deleteEverything() {
+        Pathfinder pf = new Pathfinder();
+        pf.deleteAllPathStorageFiles();
+        GameDataBase gdb = new GameDataBase();
+        gdb.deleteAllPlayerFiles();
+        gdb.deleteDiceHistoryFiles();
     }
 
     //------------------------------------------------------------
@@ -253,8 +268,6 @@ public class Connector {
 
         return b;
     }
-
-
 
     // This method gets the player name, color and the chosen number and crosses it in the file
     public String crossANumber(String fileName, String color, String number) {

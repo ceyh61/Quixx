@@ -186,7 +186,7 @@ public class Start {
     }
 
     public static void main(String[] args) throws Exception{
-        //toWelcomePage();
+        toWelcomePage();
         //System.out.println(testing1());
         //System.out.println(testing2());
         //testCreatePlayerFiles();
@@ -220,7 +220,7 @@ public class Start {
         //System.out.println(x);
         //System.out.println(c.checkIfTwoRowsAreDisabled(5));
 
-        new Welcome();
+        //new Welcome();
 
 
     }

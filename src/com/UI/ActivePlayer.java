@@ -387,8 +387,6 @@ public class ActivePlayer extends JFrame implements ActionListener {
                 }
             }
 
-
-
             if (cRed_Rbt.isSelected()) {
                 if (cnn.checkColoredNumberCross("red", cNumber_Tf.getText()) && cnn.checkNumberCross(activePlayer, "red", cNumber_Tf.getText())){
                     cnn.crossANumber(activePlayer, "red", "" + cNumber_Tf.getText());
