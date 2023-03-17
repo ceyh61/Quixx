@@ -9,7 +9,7 @@ public class Connector {
 
     //------------------------------------------------------------
     //---Content:-------------------------------------------------
-    //---1. Database methods -------------------------------------
+    //---1. GameDatabase methods ---------------------------------
     //---2. Pathfinder methods -----------------------------------
     //---3. Player input methods ---------------------------------
     //---4. Dice Read/Write methods ------------------------------
@@ -57,6 +57,13 @@ public class Connector {
     public void createEverything(int numberOfPlayers) {
         createPathFiles(numberOfPlayers);
         createPlayerFiles(numberOfPlayers);
+    }
+
+    // This method returns the number of players by counting the player files
+    public int getNumberOfPlayers() {
+        GameDataBase gdb = new GameDataBase();
+        int answer = gdb.countNumberOfPlayerFiles();
+        return answer;
     }
 
     //------------------------------------------------------------

@@ -211,6 +211,22 @@ public class GameDataBase {
             }
         }
     }
+
+    // method gets then player folder path as a String and returns the number of files 
+    protected int countNumberOfPlayerFiles() {
+        File folder = new File(PLAYER_FOLDER);
+        File[] files = folder.listFiles();
+        int count = 0;
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    
 /* 
     // method returns the Path of a given player
     private String getPlayerFileIndex(String fileName) {
