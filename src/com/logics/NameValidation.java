@@ -42,7 +42,7 @@ public class NameValidation {
         }
         // if there is at least one mistake found!
         else if (totalCheck != 0) {
-            answer = ""+"!";
+            answer += "!";
         }
         return answer;
     }

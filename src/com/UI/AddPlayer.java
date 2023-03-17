@@ -190,10 +190,36 @@ public class AddPlayer extends JFrame implements ActionListener{
             String p4_Name = p4_Tf.getText();
             String p5_Name = p5_Tf.getText();
 
-            msg = cnn.validateName(p1_Name);
+            switch (numberPlayers) {
+                // checks the input of the two players
+                case (2):   msg += cnn.validateName(p1_Name);
+                            msg += "\n"+cnn.validateName(p2_Name);  
+                    break;   
+                // checks the input of the three players
+                case (3):   msg += cnn.validateName(p1_Name);
+                            msg += "\n"+cnn.validateName(p2_Name);
+                            msg += "\n"+cnn.validateName(p3_Name);   
+                    break;
+                // checks the input of the four players    
+                case (4):   msg += cnn.validateName(p1_Name);
+                            msg += "\n"+cnn.validateName(p2_Name);
+                            msg += "\n"+cnn.validateName(p3_Name);
+                            msg += "\n"+cnn.validateName(p4_Name);   
+                    break;
+                // checks the input of the all players (max. 5 names)   
+                case (5):   msg += cnn.validateName(p1_Name);
+                            msg += "\n"+cnn.validateName(p2_Name);
+                            msg += "\n"+cnn.validateName(p3_Name);
+                            msg += "\n"+cnn.validateName(p4_Name);
+                            msg += "\n"+cnn.validateName(p5_Name); 
+                    break;
+                default:
+                    break;
+            }
 
+            // if there is a mistake in the input boxes it shows a message
             if (!msg.isEmpty()) {
-                JOptionPane.showMessageDialog(null, ""+msg);
+                JOptionPane.showMessageDialog(null, msg);
             } else {
 
                 GameProcess game = new GameProcess(numberPlayers);
