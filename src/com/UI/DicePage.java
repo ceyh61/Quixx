@@ -204,6 +204,9 @@ public class DicePage extends JFrame implements ActionListener{
         }
 
         else if(e.getSource() == exit_Bt){
+            // deletes evething before closing the program
+            Connector cnn = new Connector();
+            cnn.deleteEverything();
             // closes the program
             System.exit(0);
         }
