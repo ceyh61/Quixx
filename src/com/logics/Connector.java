@@ -121,8 +121,8 @@ public class Connector {
     // and checks if a players name contains only letter 
     public String validateName(String fileName) {
         String answer = "";
-        Pathfinder pf = new Pathfinder();
-        answer = pf.getLastSavedFilePath(fileName);
+        NameValidation nv = new NameValidation();
+        answer = nv.checkPlayerInput(fileName);
         return answer;
     }
 

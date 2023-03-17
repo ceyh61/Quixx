@@ -190,7 +190,7 @@ public class AddPlayer extends JFrame implements ActionListener{
             String p4_Name = p4_Tf.getText();
             String p5_Name = p5_Tf.getText();
 
-            //msg = cnn.validateName(p1_Name);
+            msg = cnn.validateName(p1_Name);
 
             if (!msg.isEmpty()) {
                 JOptionPane.showMessageDialog(null, ""+msg);
@@ -203,6 +203,9 @@ public class AddPlayer extends JFrame implements ActionListener{
         } 
 
         else if(e.getSource() == exit_Bt){
+            // deletes evething before closing the program
+            Connector cnn = new Connector();
+            cnn.deleteEverything();
             // closes the program
             System.exit(0);
         }
