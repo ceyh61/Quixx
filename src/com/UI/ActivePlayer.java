@@ -41,6 +41,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
     private JTextField cNumber_Tf;
     private JTextArea warning_Ta;
     private JButton continue_Bt;
+    private JButton exit_Bt;
     private GameProcess process;
     private String activePlayer;
     private int addierteZahl;
@@ -52,7 +53,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
         this.activePlayer = process.getActivePlayer();
         setTitle("Active Player");
         setSize(800, 600);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
 
@@ -159,14 +160,24 @@ public class ActivePlayer extends JFrame implements ActionListener {
         c.add(bDice_Lb);
 
 
-        penalty_Lb = new JLabel("Penalties: " + cnn.getPenaltyNumbers(activePlayer));
+        penalty_Lb = new JLabel("Penalty: " + cnn.getPenaltyNumbers(activePlayer));
         penalty_Lb.setFont(new Font("Arial", Font.BOLD, 18));
-        penalty_Lb.setBounds(575, 20, 150, 50);
+        penalty_Lb.setBounds(575, 20, 100, 50);
         penalty_Lb.setOpaque(true);
-        penalty_Lb.setBackground(Color.black);
+        penalty_Lb.setBackground(Color.BLACK);
         penalty_Lb.setForeground(Color.white);
         penalty_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(penalty_Lb);
+
+        exit_Bt = new JButton("Exit");
+        exit_Bt.setFont(new Font("Arial", Font.BOLD, 18));
+        exit_Bt.setBounds(685, 20, 80, 50);
+        exit_Bt.setOpaque(true);
+        exit_Bt.setBackground(new Color(209,26,42));
+        exit_Bt.setForeground(Color.white);
+        exit_Bt.setFocusable(false);
+        exit_Bt.addActionListener(this);
+        c.add(exit_Bt);
 
         wCross_Lb = new JLabel("Cross with the help of the white dice:");
         wCross_Lb.setFont(new Font("Arial", Font.BOLD, 16));
@@ -345,8 +356,21 @@ public class ActivePlayer extends JFrame implements ActionListener {
             cNumber_Tf.setEnabled(true);
             cNumber_Lb.setEnabled(true);
         }
+        if(e.getSource() == exit_Bt){
+            int choice = JOptionPane.showConfirmDialog
+                    (null, "Do you want to Exit from the Game?\n\nWarning: All data will be DELETED !",
+                            "Confirm", JOptionPane.YES_NO_OPTION);
 
-
+            if (choice == JOptionPane.YES_OPTION) {
+                // deletes evething before closing the program
+                Connector cnn = new Connector();
+                cnn.deleteEverything();
+                // closes the program
+                System.exit(0);
+            } else if (choice == JOptionPane.YES_OPTION){
+                // DO NOTHING!
+            }
+        }
         if(e.getSource() == continue_Bt) {
             boolean end = true;
             Connector cnn = new Connector();
