@@ -1,6 +1,7 @@
 package com.UI;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 import com.logics.Connector;
 import com.logics.GameProcess;
@@ -24,6 +25,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
     private JLabel wSumNumber_Lb;
     private JLabel cNumber_Lb;
     private JLabel penalty_Lb;
+    private  JLabel playercard_Lb;
     private JRadioButton wNothing_Rbt;
     private JRadioButton wRed_Rbt;
     private JRadioButton wYellow_Rbt;
@@ -42,7 +44,6 @@ public class ActivePlayer extends JFrame implements ActionListener {
     private GameProcess process;
     private String activePlayer;
     private int addierteZahl;
-    private  JLabel playercard_Lb;
 
 
     public ActivePlayer(GameProcess process) {
@@ -143,7 +144,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
         gDice_Lb.setFont(new Font("Arial", Font.BOLD, 18));
         gDice_Lb.setBounds(445, 20, 50, 50);
         gDice_Lb.setOpaque(true);
-        gDice_Lb.setBackground(Color.green);
+        gDice_Lb.setBackground(new Color(0,128,0));
         gDice_Lb.setForeground(Color.black);
         gDice_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(gDice_Lb);
@@ -223,6 +224,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
         wNumber_Lb.setBounds(655, 220, 60, 25);
         wNumber_Lb.setForeground(Color.BLACK);
         c.add(wNumber_Lb);
+
         int zahl1 = Integer.parseInt(ergebnis[0]);
         int zahl2 = Integer.parseInt(ergebnis[1]);
         addierteZahl = zahl1+zahl2;
@@ -239,7 +241,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
         playercard_Lb.setFont(new Font("Arial",Font.BOLD,18));
         playercard_Lb.setBounds(20,80,410,350);
         playercard_Lb.setOpaque(true);
-        //scorecard_Lb.setBackground(new Color(30, 70, 125));
+        playercard_Lb.setBackground(new Color(211,211,211));
         playercard_Lb.setForeground(Color.BLACK);
         playercard_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(playercard_Lb);

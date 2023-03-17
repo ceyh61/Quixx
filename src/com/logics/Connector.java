@@ -164,13 +164,14 @@ public class Connector {
     //This method returns the Player Card for the UI
     public String get_Player_Card_UI(String fileName) {
         String[] colors = {"red", "yel", "gre", "blu"};
+        String[] textColors = {"yellow", "green", "blue",""};
 
-        String a = "<html><body><h1 style='text-align:center;'>Your PlayerCard: </h1><br><p>";
+        String a = "<html><body><h1 style='text-align:center;'>Your PlayerCard: </h1><br><p style='color:red'>";
 
         for (int i = 0; i < colors.length; i++) {
             String lineString = get_A_Line(fileName, colors[i]) + "";
             lineString = lineString.substring(1, lineString.length()-7);
-            lineString+="</p><p>";
+            lineString+="</p><p style='color:" + textColors[i] + "'>";
             a += lineString + "<br>";
         }
 

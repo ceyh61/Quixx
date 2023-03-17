@@ -1,6 +1,7 @@
 package com.UI;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 import com.logics.Connector;
 import com.logics.GameProcess;
@@ -21,6 +22,7 @@ public class PassivePlayer extends JFrame implements ActionListener {
     private JLabel wNumber_Lb;
     private JLabel wSumNumber_Lb;
     private JLabel penalty_Lb;
+    private  JLabel playercard_Lb;
     private JRadioButton wNothing_Rbt;
     private JRadioButton wRed_Rbt;
     private JRadioButton wYellow_Rbt;
@@ -33,6 +35,7 @@ public class PassivePlayer extends JFrame implements ActionListener {
     private GameProcess process;
 
     public PassivePlayer(String passivePlayer, GameProcess process) {
+        Connector cnn = new Connector();
         this.passivePlayer = passivePlayer;
         this.process = process;
         setTitle("Passive Player");
@@ -94,8 +97,11 @@ Connector cnn = new Connector();
         pName_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(pName_Lb);
 
+        String wwuerfel = cnn.getLastDiceData();
+        String[] ergebnis = wwuerfel.split(",");
+
         // create the first white dice label
-        wDice1_Lb = new JLabel("W1");
+        wDice1_Lb = new JLabel(ergebnis[0]);
         wDice1_Lb.setOpaque(true);
         wDice1_Lb.setBackground(Color.white);
         wDice1_Lb.setFont(new Font("Arial", Font.BOLD, 18));
@@ -104,7 +110,7 @@ Connector cnn = new Connector();
         wDice1_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(wDice1_Lb);
 
-        wDice2_Lb = new JLabel("W2");
+        wDice2_Lb = new JLabel(ergebnis[1]);
         wDice2_Lb.setOpaque(true);
         wDice2_Lb.setBackground(Color.white);
         wDice2_Lb.setFont(new Font("Arial", Font.BOLD, 18));
@@ -113,7 +119,7 @@ Connector cnn = new Connector();
         wDice2_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(wDice2_Lb);
 
-        rDice_Lb = new JLabel("R");
+        rDice_Lb = new JLabel(ergebnis[2]);
         rDice_Lb.setFont(new Font("Arial", Font.BOLD, 18));
         rDice_Lb.setBounds(315, 20, 50, 50);
         rDice_Lb.setOpaque(true);
@@ -122,7 +128,7 @@ Connector cnn = new Connector();
         rDice_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(rDice_Lb);
 
-        yDice_Lb = new JLabel("Y");
+        yDice_Lb = new JLabel(ergebnis[3]);
         yDice_Lb.setFont(new Font("Arial", Font.BOLD, 18));
         yDice_Lb.setBounds(380, 20, 50, 50);
         yDice_Lb.setOpaque(true);
@@ -131,16 +137,16 @@ Connector cnn = new Connector();
         yDice_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(yDice_Lb);
 
-        gDice_Lb = new JLabel("G");
+        gDice_Lb = new JLabel(ergebnis[4]);
         gDice_Lb.setFont(new Font("Arial", Font.BOLD, 18));
         gDice_Lb.setBounds(445, 20, 50, 50);
         gDice_Lb.setOpaque(true);
-        gDice_Lb.setBackground(Color.green);
+        gDice_Lb.setBackground(new Color(0,128,0));
         gDice_Lb.setForeground(Color.black);
         gDice_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(gDice_Lb);
 
-        bDice_Lb = new JLabel("B");
+        bDice_Lb = new JLabel(ergebnis[5]);
         bDice_Lb.setFont(new Font("Arial", Font.BOLD, 18));
         bDice_Lb.setBounds(510, 20, 50, 50);
         bDice_Lb.setOpaque(true);
@@ -149,7 +155,6 @@ Connector cnn = new Connector();
         bDice_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(bDice_Lb);
 
-        Connector cnn = new Connector();
         penalty_Lb = new JLabel("Penalties: " + cnn.getPenaltyNumbers(passivePlayer));
         penalty_Lb.setFont(new Font("Arial", Font.BOLD, 18));
         penalty_Lb.setBounds(575, 20, 150, 50);
@@ -225,7 +230,16 @@ Connector cnn = new Connector();
         wSumNumber_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(wSumNumber_Lb);
 
-        warning_Ta = new JTextArea("Test Text");
+        playercard_Lb = new JLabel(cnn.get_Player_Card_UI(passivePlayer));
+        playercard_Lb.setFont(new Font("Arial",Font.BOLD,18));
+        playercard_Lb.setBounds(20,80,410,350);
+        playercard_Lb.setOpaque(true);
+        playercard_Lb.setBackground(new Color(211,211,211));
+        playercard_Lb.setForeground(Color.BLACK);
+        playercard_Lb.setHorizontalAlignment(SwingConstants.CENTER);
+        c.add(playercard_Lb);
+
+        warning_Ta = new JTextArea();
         warning_Ta.setFont(new Font("Arial", Font.BOLD, 18));
         warning_Ta.setBounds(20, 450, 410, 100);
         warning_Ta.setLineWrap(true);

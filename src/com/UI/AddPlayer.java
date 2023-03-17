@@ -24,7 +24,6 @@ public class AddPlayer extends JFrame implements ActionListener{
     private JTextField p5_Tf;
     private JButton continue_Bt;
     private JButton exit_Bt;
-
     private int numberPlayers;
 
     public AddPlayer(int numberPlayers) {
