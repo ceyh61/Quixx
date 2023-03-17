@@ -185,14 +185,14 @@ public class DicePage extends JFrame implements ActionListener{
         if (e.getSource() == roll_Bt) {
             Connector cnn = new Connector();
             cnn.saveDiceData(cnn.getDiceRollingResult());
-            String wwuerfel = cnn.getLastDiceData();
-            String[] ergebnis = wwuerfel.split(",");
-            whiteDice1_LB.setText(ergebnis[0]);
-            whiteDice2_LB.setText(ergebnis[1]);
-            redDice_LB.setText(ergebnis[2]);
-            yellowDice_LB.setText(ergebnis[3]);
-            greenDice_LB.setText(ergebnis[4]);
-            blueDice_LB.setText(ergebnis[5]);
+            String wuerfel = cnn.getLastDiceData();
+            String[] result = wuerfel.split(",");
+            whiteDice1_LB.setText(result[0]);
+            whiteDice2_LB.setText(result[1]);
+            redDice_LB.setText(result[2]);
+            yellowDice_LB.setText(result[3]);
+            greenDice_LB.setText(result[4]);
+            blueDice_LB.setText(result[5]);
             roll_Bt.setEnabled(false);
             continue_Bt.setEnabled(true);
         } 
@@ -204,11 +204,21 @@ public class DicePage extends JFrame implements ActionListener{
         }
 
         else if(e.getSource() == exit_Bt){
-            // deletes evething before closing the program
-            Connector cnn = new Connector();
-            cnn.deleteEverything();
-            // closes the program
-            System.exit(0);
+            int choice = JOptionPane.showConfirmDialog
+            (null, "Do you want to Exit from the Game?\n\nWarning: All data will be DELETED !", 
+            "Confirm", JOptionPane.YES_NO_OPTION);
+            
+            if (choice == JOptionPane.YES_OPTION) {
+                // deletes evething before closing the program
+                Connector cnn = new Connector();
+                cnn.deleteEverything();
+                // closes the program
+                System.exit(0);
+            } else if (choice == JOptionPane.YES_OPTION){
+                // DO NOTHING!
+            }
+
+            
         }
 
     }
