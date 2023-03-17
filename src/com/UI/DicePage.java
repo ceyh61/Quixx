@@ -3,7 +3,6 @@ package com.UI;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 
 import com.logics.Connector;
@@ -17,8 +16,7 @@ public class DicePage extends JFrame implements ActionListener{
     private JLabel p2_Name_Lb;
     private JLabel p3_Name_Lb;
     private JLabel p4_Name_Lb;
-    private JLabel p5_Name_Lb;
-    private JLabel penalty_Lb; 
+    private JLabel p5_Name_Lb; 
     private JLabel whiteDice1_LB;
     private JLabel whiteDice2_LB;
     private JLabel redDice_LB;
@@ -52,7 +50,6 @@ public class DicePage extends JFrame implements ActionListener{
         title_Lb.setLocation(300, 20);
         //title_Lb.setBorder(new BevelBorder(BevelBorder.RAISED, Color.ORANGE, Color.ORANGE));
         c.add(title_Lb);
-        Connector cnn = new Connector();
 
         // creates a label for the name of the first user
         p1_Name_Lb = new JLabel(process.getActivePlayerName(), SwingConstants.CENTER);
