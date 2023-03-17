@@ -281,6 +281,16 @@ public class Connector {
         String answer = "";
         PlayerDataRW pd = new PlayerDataRW();
         answer = pd.crossANumberInBoard(fileName, color, number);
+        if (color.equalsIgnoreCase("red") || color.equalsIgnoreCase("yel")) {
+            if (number.equals("12")) {
+                crossALock(fileName, color);
+            }
+        }
+        if (color.equalsIgnoreCase("gre") || color.equalsIgnoreCase("blu")) {
+            if (number.equals("2")) {
+                crossALock(fileName, color);
+            }
+        }
         return answer;
     }
 
