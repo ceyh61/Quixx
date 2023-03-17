@@ -115,7 +115,7 @@ public class AddPlayer extends JFrame implements ActionListener{
         p4_Tf.setLocation(160, 210);
         c.add(p4_Tf);
 
-                        // creates a field for first user to enter the name
+        // creates a field for first user to enter the name
         p5_Tf = new JTextField();
         p5_Tf.setFont(new Font("Arial", Font.PLAIN, 15));
         p5_Tf.setSize(190, 20);
