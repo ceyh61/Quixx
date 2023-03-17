@@ -91,7 +91,7 @@ public class ActivePlayer extends JFrame implements ActionListener {
                 }
             }
         });
-
+        
         // create the player name label
         pName_Lb = new JLabel(process.getActivePlayerName());
         pName_Lb.setFont(new Font("Arial", Font.BOLD, 18));

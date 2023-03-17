@@ -32,11 +32,7 @@ public class Pathfinder {
         String st2 = st1.replace(':', '-');
         String st3 = st2.substring(0, 19);
         answer = storageName+st3+".csv";
-        try {
-            Thread.sleep(300);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
         return answer;
     }
 

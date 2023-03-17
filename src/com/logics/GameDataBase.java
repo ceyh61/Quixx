@@ -61,11 +61,7 @@ public class GameDataBase {
         String st2 = st1.replace(':', '-');
         String st3 = st2.substring(0, 19);
         answer = playerName+st3+".csv";
-        try {
-            Thread.sleep(300);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
         return answer;
     }
 
@@ -226,7 +222,7 @@ public class GameDataBase {
         }
         return count;
     }
-    
+
 /* 
     // method returns the Path of a given player
     private String getPlayerFileIndex(String fileName) {
