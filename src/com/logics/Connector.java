@@ -134,8 +134,8 @@ public class Connector {
     public String getLastDiceData() {
         String answer = "";
         DiceDataRW dd = new DiceDataRW();
-        String a = ""+ dd.readDiceFile();
-        return a;
+        answer = ""+ dd.readDiceFile();
+        return answer;
     }
 
     // This method gets the six generated random numbers and saves it into the diceRoll CSV file
@@ -225,14 +225,14 @@ public class Connector {
     // This method checks if the selected Number can be crossed and crosses if possible
     public boolean checkColoredNumberCross(String color, String number) {
         String colors[] = {"red", "yel", "gre", "blu"};
-        String wwuerfel = getLastDiceData();
-        String[] ergebnis = wwuerfel.split(",");
+        String wuerfel = getLastDiceData();
+        String[] result = wuerfel.split(",");
         boolean b = false;
 
         for (int i = 0; i < colors.length; i++) {
             if (colors[i] == color) {
-                int possibility1 = Integer.parseInt(ergebnis[0]) + Integer.parseInt(ergebnis[i + 2]);
-                int possibility2 = Integer.parseInt(ergebnis[1]) + Integer.parseInt(ergebnis[i + 2]);
+                int possibility1 = Integer.parseInt(result[0]) + Integer.parseInt(result[i + 2]);
+                int possibility2 = Integer.parseInt(result[1]) + Integer.parseInt(result[i + 2]);
                 if (number.equals("" + possibility1) || number.equals("" + possibility2)){
                     b = true;
                 }
