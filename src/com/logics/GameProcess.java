@@ -25,6 +25,48 @@ public class GameProcess {
         return this.nameList;
     }
 
+    public String getActivePlayerName(){
+        String answer = "";
+        String p = getActivePlayer();
+        if (p.equalsIgnoreCase("p1")) {
+            answer = getPlayerNames().get(0);
+        }
+        if (p.equalsIgnoreCase("p2")) {
+            answer = getPlayerNames().get(1);
+        }
+        if (p.equalsIgnoreCase("p3")) {
+            answer = getPlayerNames().get(2);
+        }
+        if (p.equalsIgnoreCase("p4")) {
+            answer = getPlayerNames().get(3);
+        }
+        if (p.equalsIgnoreCase("p5")) {
+            answer = getPlayerNames().get(4);
+        }
+        return answer; 
+    }
+
+    public String getPassivePlayerName(){
+        String answer = "";
+        String p = getActivePlayer();
+        if (p.equalsIgnoreCase("p1")) {
+            answer = getPlayerNames().get(0);
+        }
+        if (p.equalsIgnoreCase("p2")) {
+            answer = getPlayerNames().get(1);
+        }
+        if (p.equalsIgnoreCase("p3")) {
+            answer = getPlayerNames().get(2);
+        }
+        if (p.equalsIgnoreCase("p4")) {
+            answer = getPlayerNames().get(3);
+        }
+        if (p.equalsIgnoreCase("p5")) {
+            answer = getPlayerNames().get(4);
+        }
+        return answer;
+    }
+
     public String getActivePlayer(){
         return activePlayer;
     }
