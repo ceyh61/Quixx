@@ -225,12 +225,12 @@ public class DicePage extends JFrame implements ActionListener{
             "Confirm", JOptionPane.YES_NO_OPTION);
             
             if (choice == JOptionPane.YES_OPTION) {
-                // deletes evething before closing the program
+                // deletes everything before closing the program
                 Connector cnn = new Connector();
                 cnn.deleteEverything();
                 // closes the program
                 System.exit(0);
-            } else if (choice == JOptionPane.YES_OPTION){
+            } else if (choice == JOptionPane.NO_OPTION){
                 // DO NOTHING!
             }
 
