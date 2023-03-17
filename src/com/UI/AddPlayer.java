@@ -113,12 +113,13 @@ public class AddPlayer extends JFrame implements ActionListener{
         
         // according to the number of players it displays the name input
         switch (numberPlayers) {
-
+            // creates only 2 label and input boxes
             case (2):   c.add(p1_Lb);
                         c.add(p2_Lb);
                         c.add(p1_Tf);
                         c.add(p2_Tf);
-                break;    
+                break;   
+            // creates only 3 label and input boxes 
             case (3):   c.add(p1_Lb);
                         c.add(p2_Lb);
                         c.add(p3_Lb);
@@ -126,6 +127,7 @@ public class AddPlayer extends JFrame implements ActionListener{
                         c.add(p2_Tf);
                         c.add(p3_Tf);
                 break;
+            // creates 4 label and input boxes    
             case (4):   c.add(p1_Lb);
                         c.add(p2_Lb);
                         c.add(p3_Lb);
@@ -135,6 +137,7 @@ public class AddPlayer extends JFrame implements ActionListener{
                         c.add(p3_Tf);
                         c.add(p4_Tf);
                 break;
+            // creates label and input boxes for may amount of players    
             case (5):   c.add(p1_Lb);
                         c.add(p2_Lb);
                         c.add(p3_Lb);
@@ -186,19 +189,54 @@ public class AddPlayer extends JFrame implements ActionListener{
             String p4_Name = p4_Tf.getText();
             String p5_Name = p5_Tf.getText();
 
-            //msg = cnn.validateName(p1_Name);
-
-            if (!msg.isEmpty()) {
-                JOptionPane.showMessageDialog(null, ""+msg);
-            } else {
-
-                GameProcess game = new GameProcess(numberPlayers);
-                new DicePage(game);
-                dispose();
+            switch (numberPlayers) {
+                // checks the input of the two players
+                case (2):   msg += cnn.validateName(p1_Name);
+                            msg += "\n"+cnn.validateName(p2_Name);  
+                    break;   
+                // checks the input of the three players
+                case (3):   msg += cnn.validateName(p1_Name);
+                            msg += "\n"+cnn.validateName(p2_Name);
+                            msg += "\n"+cnn.validateName(p3_Name);   
+                    break;
+                // checks the input of the four players    
+                case (4):   msg += cnn.validateName(p1_Name);
+                            msg += "\n"+cnn.validateName(p2_Name);
+                            msg += "\n"+cnn.validateName(p3_Name);
+                            msg += "\n"+cnn.validateName(p4_Name);   
+                    break;
+                // checks the input of the all players (max. 5 names)   
+                case (5):   msg += cnn.validateName(p1_Name);
+                            msg += "\n"+cnn.validateName(p2_Name);
+                            msg += "\n"+cnn.validateName(p3_Name);
+                            msg += "\n"+cnn.validateName(p4_Name);
+                            msg += "\n"+cnn.validateName(p5_Name); 
+                    break;
+                default:
+                    break;
             }
+
+            // if there is a mistake in the input boxes it shows a message
+            if (!msg.isEmpty()) {
+                // displays the message if there is any problem with the input
+                if (msg.length() > 10) {
+                    JOptionPane.showMessageDialog(null, msg);
+                }
+                // as the message can not be Empty due to line skipping "\n" then it checks of the length
+                // of the line is less than 10 characters, which means the message is empty and there is no problem 
+                if (msg.length() < 10) {
+                    GameProcess game = new GameProcess(numberPlayers);
+                    new DicePage(game);
+                    dispose();
+                }
+            }
+
         } 
 
         else if(e.getSource() == exit_Bt){
+            // deletes evething before closing the program
+            Connector cnn = new Connector();
+            cnn.deleteEverything();
             // closes the program
             System.exit(0);
         }

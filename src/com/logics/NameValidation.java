@@ -38,11 +38,11 @@ public class NameValidation {
 
         // if there are no mistake found!
         if (totalCheck == 0) {
-            answer = "Player Registred Successfully!";
+            answer = "";
         }
         // if there is at least one mistake found!
         else if (totalCheck != 0) {
-            answer = ""+"!";
+            answer += "!";
         }
         return answer;
     }
