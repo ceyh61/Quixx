@@ -197,14 +197,16 @@ public class DicePage extends JFrame implements ActionListener{
             continue_Bt.setEnabled(true);
         } 
 
-        else if(e.getSource() == exit_Bt){
-            // closes the program
-            System.exit(0);
-        }
 
         if (e.getSource() == continue_Bt) {
             dispose();
             new ActivePlayer(process);
         }
+
+        else if(e.getSource() == exit_Bt){
+            // closes the program
+            System.exit(0);
+        }
+
     }
 }

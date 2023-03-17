@@ -219,13 +219,19 @@ public class AddPlayer extends JFrame implements ActionListener{
 
             // if there is a mistake in the input boxes it shows a message
             if (!msg.isEmpty()) {
-                JOptionPane.showMessageDialog(null, msg);
-            } else {
-
-                GameProcess game = new GameProcess(numberPlayers);
-                new DicePage(game);
-                dispose();
+                // displays the message if there is any problem with the input
+                if (msg.length() > 10) {
+                    JOptionPane.showMessageDialog(null, msg);
+                }
+                // as the message can not be Empty due to line skipping "\n" then it checks of the length
+                // of the line is less than 10 characters, which means the message is empty and there is no problem 
+                if (msg.length() < 10) {
+                    GameProcess game = new GameProcess(numberPlayers);
+                    new DicePage(game);
+                    dispose();
+                }
             }
+
         } 
 
         else if(e.getSource() == exit_Bt){
