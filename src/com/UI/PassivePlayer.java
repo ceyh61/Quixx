@@ -76,7 +76,7 @@ Connector cnn = new Connector();
                     process.nextRound();
 
                     if (cnn.checkGameEnd(process.getPlayerlist().size())){
-                        new Scoreboard();
+                        new Scoreboard(process);
 
                     } else {
                         new DicePage(process);

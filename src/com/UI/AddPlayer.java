@@ -2,6 +2,7 @@ package com.UI;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
 import com.logics.Connector;
@@ -180,6 +181,7 @@ public class AddPlayer extends JFrame implements ActionListener{
         if (e.getSource() == continue_Bt) {
 
             Connector cnn = new Connector();
+            ArrayList<String> playerNames = new ArrayList<String>();
             String msg = "";
 
             // gets the input (player Names) as String/text
@@ -192,25 +194,39 @@ public class AddPlayer extends JFrame implements ActionListener{
             switch (numberPlayers) {
                 // checks the input of the two players
                 case (2):   msg += cnn.validateName(p1_Name);
-                            msg += "\n"+cnn.validateName(p2_Name);  
+                            msg += "\n"+cnn.validateName(p2_Name);
+                            playerNames.add(p1_Name);
+                            playerNames.add(p2_Name);
                     break;   
                 // checks the input of the three players
                 case (3):   msg += cnn.validateName(p1_Name);
                             msg += "\n"+cnn.validateName(p2_Name);
-                            msg += "\n"+cnn.validateName(p3_Name);   
+                            msg += "\n"+cnn.validateName(p3_Name);
+                            playerNames.add(p1_Name);
+                            playerNames.add(p2_Name);
+                            playerNames.add(p3_Name);
                     break;
                 // checks the input of the four players    
                 case (4):   msg += cnn.validateName(p1_Name);
                             msg += "\n"+cnn.validateName(p2_Name);
                             msg += "\n"+cnn.validateName(p3_Name);
-                            msg += "\n"+cnn.validateName(p4_Name);   
+                            msg += "\n"+cnn.validateName(p4_Name);
+                            playerNames.add(p1_Name);
+                            playerNames.add(p2_Name);
+                            playerNames.add(p3_Name);
+                            playerNames.add(p4_Name);
                     break;
                 // checks the input of the all players (max. 5 names)   
                 case (5):   msg += cnn.validateName(p1_Name);
                             msg += "\n"+cnn.validateName(p2_Name);
                             msg += "\n"+cnn.validateName(p3_Name);
                             msg += "\n"+cnn.validateName(p4_Name);
-                            msg += "\n"+cnn.validateName(p5_Name); 
+                            msg += "\n"+cnn.validateName(p5_Name);
+                            playerNames.add(p1_Name);
+                            playerNames.add(p2_Name);
+                            playerNames.add(p3_Name);
+                            playerNames.add(p4_Name);
+                            playerNames.add(p5_Name);
                     break;
                 default:
                     break;
@@ -226,6 +242,7 @@ public class AddPlayer extends JFrame implements ActionListener{
                 // of the line is less than 10 characters, which means the message is empty and there is no problem 
                 if (msg.length() < 10) {
                     GameProcess game = new GameProcess(numberPlayers);
+                    game.savePlayerNames(playerNames);
                     new DicePage(game);
                     dispose();
                 }

@@ -117,7 +117,6 @@ public class Calculations {
 
     protected int calculateAllPointsOfPlayer(String fileName){
         int redPoints = calculateRedPoints(fileName);
-        System.out.println(redPoints);
         int yellowPoints = calculateYellowPoints(fileName);
         int greenPoints = calculateGreenPoints(fileName);
         int bluePoints = calculateBluePoints(fileName);

@@ -1,11 +1,15 @@
 package com.UI;
 
+import com.logics.Connector;
+import com.logics.GameProcess;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class Scoreboard extends JFrame implements ActionListener {
 
+    private GameProcess process;
     private Container c;
     private JLabel title_Lb;
     private JLabel p1Score_Lb;
@@ -13,10 +17,12 @@ public class Scoreboard extends JFrame implements ActionListener {
     private JLabel p3Score_Lb;
     private JLabel p4Score_Lb;
     private JLabel p5Score_Lb;
+    private int playerNumber;
 
-    public Scoreboard() {
-
-        boolean b = false;
+    public Scoreboard(GameProcess process) {
+        this.process = process;
+        Connector cnn = new Connector();
+        playerNumber = process.getPlayerlist().size();
 
         setTitle("Scoreboard");
         setSize(800, 600);
@@ -38,7 +44,7 @@ public class Scoreboard extends JFrame implements ActionListener {
         title_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(title_Lb);
 
-        p1Score_Lb = new JLabel("Player1: X");
+        p1Score_Lb = new JLabel(process.getPlayerNames().get(0)+" "+ cnn.calculatePointsOfPlayer("p1") + " points");
         p1Score_Lb.setFont(new Font("Arial", Font.PLAIN, 16));
         p1Score_Lb.setBounds(150, 200, 500, 50);
         p1Score_Lb.setOpaque(true);
@@ -47,7 +53,7 @@ public class Scoreboard extends JFrame implements ActionListener {
         p1Score_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(p1Score_Lb);
 
-        p2Score_Lb = new JLabel("Player2: X");
+        p2Score_Lb = new JLabel(process.getPlayerNames().get(1)+" "+ cnn.calculatePointsOfPlayer("p2") + " points");
         p2Score_Lb.setFont(new Font("Arial", Font.PLAIN, 16));
         p2Score_Lb.setBounds(150, 270, 500, 50);
         p2Score_Lb.setOpaque(true);
@@ -56,9 +62,9 @@ public class Scoreboard extends JFrame implements ActionListener {
         p2Score_Lb.setHorizontalAlignment(SwingConstants.CENTER);
         c.add(p2Score_Lb);
 
-        if(b) {
+        if(playerNumber >= 3) {
 
-            p3Score_Lb = new JLabel("Player3: X");
+            p3Score_Lb = new JLabel(process.getPlayerNames().get(2)+" "+ cnn.calculatePointsOfPlayer("p3") + " points");
             p3Score_Lb.setFont(new Font("Arial", Font.PLAIN, 16));
             p3Score_Lb.setBounds(150, 340, 500, 50);
             p3Score_Lb.setOpaque(true);
@@ -69,9 +75,9 @@ public class Scoreboard extends JFrame implements ActionListener {
 
         }
 
-        if(b) {
+        if(playerNumber >= 4) {
 
-            p4Score_Lb = new JLabel("Player4: X");
+            p4Score_Lb = new JLabel(process.getPlayerNames().get(3)+" "+ cnn.calculatePointsOfPlayer("p4") + " points");
             p4Score_Lb.setFont(new Font("Arial", Font.PLAIN, 16));
             p4Score_Lb.setBounds(150, 410, 500, 50);
             p4Score_Lb.setOpaque(true);
@@ -82,9 +88,9 @@ public class Scoreboard extends JFrame implements ActionListener {
 
         }
 
-        if(b) {
+        if(playerNumber == 5) {
 
-            p5Score_Lb = new JLabel("Player5: X");
+            p5Score_Lb = new JLabel( process.getPlayerNames().get(4)+" "+ cnn.calculatePointsOfPlayer("p5") + " points");
             p5Score_Lb.setFont(new Font("Arial", Font.PLAIN, 16));
             p5Score_Lb.setBounds(150, 480, 500, 50);
             p5Score_Lb.setOpaque(true);

@@ -297,7 +297,10 @@ public class Connector {
         answer = cal.calculatePenaltiesPoints(fileName);
         return answer;
     }
-
+    public int calculatePointsOfPlayer(String fileName){
+        int points = new Calculations().calculateAllPointsOfPlayer(fileName);
+        return points;
+    }
     public boolean checkGameEnd(int playersCount){
         Calculations cal = new Calculations();
         boolean end = false;

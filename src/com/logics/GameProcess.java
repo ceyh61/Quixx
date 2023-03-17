@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class GameProcess {
     private String activePlayer;
     private ArrayList<String> passivePlayer = new ArrayList<String>();
+    private ArrayList<String> nameList = new ArrayList<String>();
     ArrayList<String> playerlist = new ArrayList<String>();
     private int countWindows;
     public GameProcess(int playersCount){//, String[] playerNames){
@@ -16,9 +17,13 @@ public class GameProcess {
         this.activePlayer = playerlist.get(0);
     }
 
-    /*protected cycle(int playersCount){
-
-    }*/
+    public ArrayList<String> savePlayerNames(ArrayList<String> playerNames){
+        this.nameList = playerNames;
+        return nameList;
+    }
+    public ArrayList<String> getPlayerNames(){
+        return this.nameList;
+    }
 
     public String getActivePlayer(){
         return activePlayer;
