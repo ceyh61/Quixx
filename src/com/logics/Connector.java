@@ -161,22 +161,20 @@ public class Connector {
         answer = pd.readOnlyOneLine(fileName, color);
         return answer;
     }
-    //<p>Your PlayerCard: </p><br>
+    //This method returns the Player Card for the UI
     public String get_Player_Card_UI(String fileName) {
         String[] colors = {"red", "yel", "gre", "blu"};
+
         String a = "<html><body><h1 style='text-align:center;'>Your PlayerCard: </h1><br><p>";
-        PlayerDataRW pd = new PlayerDataRW();
+
         for (int i = 0; i < colors.length; i++) {
             String lineString = get_A_Line(fileName, colors[i]) + "";
             lineString = lineString.substring(1, lineString.length()-7);
             lineString+="</p><p>";
             a += lineString + "<br>";
         }
-a+="</p></body></html>";
-        // cuts the first and the last character from the String, which are the parantheses
-        //String b = a.substring(1, a.length()-1);
-        // eleminates all the spaces from the String so there would be no problem in CSV file
-        //String ret = a.replaceAll("\\s", "");
+
+        a+="</p></body></html>";
 
         return a;
     }
@@ -208,6 +206,54 @@ a+="</p></body></html>";
         b = pd.checkIfNumberIsCrossed(fileName, color, number);
         return b;
     }
+
+    // This method checks if the selected Number can be crossed and crosses if possible
+    public boolean checkColoredNumberCross(String color, String number) {
+        String colors[] = {"red", "yel", "gre", "blu"};
+        String wwuerfel = getLastDiceData();
+        String[] ergebnis = wwuerfel.split(",");
+        boolean b = false;
+
+        for (int i = 0; i < colors.length; i++) {
+            if (colors[i] == color) {
+                int possibility1 = Integer.parseInt(ergebnis[0]) + Integer.parseInt(ergebnis[i + 2]);
+                int possibility2 = Integer.parseInt(ergebnis[1]) + Integer.parseInt(ergebnis[i + 2]);
+                if (number.equals("" + possibility1) || number.equals("" + possibility2)){
+                    b = true;
+                }
+            }
+        }
+        return b;
+    }
+
+    // This method checks if the selected Number can be crossed and crosses if possible
+    public boolean checkNumberCross(String fileName, String color, String number) {
+        boolean b = true;
+        ArrayList<String> line = get_A_Line(fileName, color);
+        String colors[] = {"red", "yel", "gre", "blu"};
+        int crosses = 0;
+        for (String l: line) {
+            if (l.equals("X")){
+                crosses++;
+            }
+        }
+        System.out.println(crosses);
+        if ((color == colors[0] || color == colors[1]) && number.equals("12")) {
+            if (crosses<5){
+                b = false;
+            }
+        } else if ((color == colors[2] || color == colors[3]) && number.equals("2")){
+            if (crosses<5){
+                b = false;
+            }
+        } else if (line.indexOf(number) <= line.lastIndexOf("X")) {
+            b = false;
+        }
+
+        return b;
+    }
+
+
 
     // This method gets the player name, color and the chosen number and crosses it in the file
     public String crossANumber(String fileName, String color, String number) {

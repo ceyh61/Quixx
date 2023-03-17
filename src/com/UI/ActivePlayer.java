@@ -344,49 +344,91 @@ public class ActivePlayer extends JFrame implements ActionListener {
             cNumber_Lb.setEnabled(true);
         }
 
+
         if(e.getSource() == continue_Bt) {
+            boolean end = true;
+            Connector cnn = new Connector();
             if (wNothing_Rbt.isSelected() && cNothing_Rbt.isSelected()) {
                 //Do Penalty for this Player
-                Connector cnn = new Connector();
                 cnn.addPenaltie(activePlayer);
             }
             if (wRed_Rbt.isSelected()) {
-                Connector cnn = new Connector();
-                cnn.crossANumber(activePlayer, "red", "" + addierteZahl);
+                if (cnn.checkNumberCross(activePlayer, "red", "" + addierteZahl)) {
+                    cnn.crossANumber(activePlayer, "red", "" + addierteZahl);
+                } else{
+                    warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                    end = false;
+                }
             }
             if (wYellow_Rbt.isSelected()) {
-                Connector cnn = new Connector();
-                cnn.crossANumber(activePlayer, "yel", "" + addierteZahl);
+                if (cnn.checkNumberCross(activePlayer, "yel", "" + addierteZahl)) {
+                    cnn.crossANumber(activePlayer, "yel", "" + addierteZahl);
+                } else {
+                    warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                    end = false;
+                }
             }
             if (wGreen_Rbt.isSelected()) {
-                Connector cnn = new Connector();
-                cnn.crossANumber(activePlayer, "gre", "" + addierteZahl);
+                if (cnn.checkNumberCross(activePlayer, "gre", "" + addierteZahl)){
+                    cnn.crossANumber(activePlayer, "gre", "" + addierteZahl);
+                } else {
+                    warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                    end = false;
+                }
             }
             if (wBlue_Rbt.isSelected()) {
-                Connector cnn = new Connector();
-                cnn.crossANumber(activePlayer, "blu", "" + addierteZahl);
+                if (cnn.checkNumberCross(activePlayer, "blu", "" + addierteZahl)){
+                    cnn.crossANumber(activePlayer, "blu", "" + addierteZahl);
+                } else {
+                    warning_Ta.setText("Zahl kann nicht gestrichen werden!");
+                    end = false;
+                }
             }
+
+
+
             if (cRed_Rbt.isSelected()) {
-                Connector cnn = new Connector();
-                cnn.crossANumber(activePlayer, "red", cNumber_Tf.getText());
+                if (cnn.checkColoredNumberCross("red", cNumber_Tf.getText()) && cnn.checkNumberCross(activePlayer, "red", cNumber_Tf.getText())){
+                    cnn.crossANumber(activePlayer, "red", "" + cNumber_Tf.getText());
+                } else {
+                    warning_Ta.setText("Eingegebene Zahl überprüfen!");
+                    end = false;
+                }
             }
+
             if (cYellow_Rbt.isSelected()) {
-                Connector cnn = new Connector();
-                cnn.crossANumber(activePlayer, "yel", cNumber_Tf.getText());
+                if (cnn.checkColoredNumberCross("yel", cNumber_Tf.getText()) && cnn.checkNumberCross(activePlayer, "yel", cNumber_Tf.getText())){
+                    cnn.crossANumber(activePlayer, "yel", "" + cNumber_Tf.getText());
+                } else {
+                    warning_Ta.setText("Eingegebene Zahl überprüfen!");
+                    end = false;
+                }
             }
             if (cGreen_Rbt.isSelected()) {
-                Connector cnn = new Connector();
-                cnn.crossANumber(activePlayer, "gre", cNumber_Tf.getText());
+                if (cnn.checkColoredNumberCross("gre", cNumber_Tf.getText()) && cnn.checkNumberCross(activePlayer, "gre", cNumber_Tf.getText())){
+                    cnn.crossANumber(activePlayer, "gre", "" + cNumber_Tf.getText());
+                } else {
+                    warning_Ta.setText("Eingegebene Zahl überprüfen!");
+                    end = false;
+                }
             }
             if (cBlue_Rbt.isSelected()) {
-                Connector cnn = new Connector();
-                cnn.crossANumber(activePlayer, "blu", cNumber_Tf.getText());
+                if (cnn.checkColoredNumberCross("blu", cNumber_Tf.getText()) && cnn.checkNumberCross(activePlayer, "blu", cNumber_Tf.getText())){
+                    cnn.crossANumber(activePlayer, "blu", "" + cNumber_Tf.getText());
+                } else {
+                    warning_Ta.setText("Eingegebene Zahl überprüfen!");
+                    end = false;
+                }
             }
-            ArrayList<String> passivePlayer = process.getPassivePlayer();
-            dispose();
-            PassivePlayer[] windows = new PassivePlayer[passivePlayer.size()];
-            for (int i = 0; i < windows.length; i++) {
-                windows[i] = new PassivePlayer(passivePlayer.get(i), process);
+
+            if (end == true){
+                ArrayList<String> passivePlayer = process.getPassivePlayer();
+                dispose();
+                //Iterate through PassivePlayers
+                PassivePlayer[] windows = new PassivePlayer[passivePlayer.size()];
+                for (int i = 0; i < windows.length; i++) {
+                    windows[i] = new PassivePlayer(passivePlayer.get(i), process);
+                }
             }
         }
     }
